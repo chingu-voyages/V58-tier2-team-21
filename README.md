@@ -36,7 +36,8 @@ coding!
 
 - Emmanuel Oduntan: [GitHub](https://github.com/oduntane) / [LinkedIn](https://linkedin.com/in/oduntane)
 - Bastien Winant: [GitHub](https://github.com/BastienWinant)
-- Delanshia Hamilton: [GitHub](https://github.com/LanceHam) 
+- Delanshia Hamilton: [GitHub](https://github.com/LanceHam)
+- Lilla Tóth: [GitHub](https://github.com/Lilla-ctrl) | [LinkedIn](https://www.linkedin.com/in/lillatoth216/)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
