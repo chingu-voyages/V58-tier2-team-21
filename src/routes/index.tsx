@@ -2,13 +2,11 @@ import { createBrowserRouter } from "react-router";
 
 import App from "../App.tsx";
 
-
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />
-        
-    }
-])
+  {
+    path: "/",
+    element: <App />,
+  },
+]);
 
-export default router
+export default router;
