@@ -49,6 +49,10 @@ You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-re
 // eslint.config.js
 import reactX from "eslint-plugin-react-x";
 import reactDom from "eslint-plugin-react-dom";
+- Emmanuel Oduntan: [GitHub](https://github.com/oduntane) / [LinkedIn](https://linkedin.com/in/oduntane)
+- Bastien Winant: [GitHub](https://github.com/BastienWinant)
+- Delanshia Hamilton: [GitHub](https://github.com/LanceHam)
+- Lilla Tóth: [GitHub](https://github.com/Lilla-ctrl) | [LinkedIn](https://www.linkedin.com/in/lillatoth216/)
 
 export default defineConfig([
   globalIgnores(["dist"]),
