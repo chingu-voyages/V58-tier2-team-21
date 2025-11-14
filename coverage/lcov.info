@@ -1,10 +1,10 @@
 TN:
-SF:src/sum.ts
-FN:1,sum
+SF:src/add.ts
+FN:2,add
 FNF:1
 FNH:1
-FNDA:1,sum
-DA:2,1
+FNDA:1,add
+DA:3,1
 LF:1
 LH:1
 BRF:0
