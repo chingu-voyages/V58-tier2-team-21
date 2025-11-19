@@ -1,4 +1,4 @@
-type ChinguCardPropsType = {
+export type ChinguCardPropsType = {
   gender: string;
   countryName: string;
   countryCode: string;
