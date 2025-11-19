@@ -22,7 +22,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
         <div className="content flex flex-col justify-center gap-1">
           <div className="line-1 flex flex-row gap-2 divide-x-2 just items-center">
             <span className="country pr-2">{props.countryName}</span>
-            <span className="year pr-2">Joined in: 2025</span>
+            <span className="year pr-2">Joined in: {props.timestamp.slice(0, 4)}</span>
             <span className="gender">{props.gender.toLowerCase()}</span>
           </div>
 
