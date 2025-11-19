@@ -7,7 +7,8 @@ const meta = {
   tags: ["autodocs"],
   args: {
     gender: "MALE",
-    country: "New Zealand",
+    countryName: "New Zealand",
+    countryCode: "NZ",
     roleType: "Web",
     voyageRole: "Developer",
     soloProjectTier: "Tier 2",
