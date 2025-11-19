@@ -39,7 +39,8 @@ export const DifferentRole: Story = {
 
 export const DifferentCountry: Story = {
   args: {
-    country: "Canada",
+    countryName: "Canada",
+    countryCode: "CA"
   },
 };
 
