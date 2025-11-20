@@ -13,14 +13,19 @@ type ChinguCardPropsType = {
 export default function ChinguCard(props: ChinguCardPropsType) {
   return (
     <>
-      <div className="card bg-gray-200 border border-black rounded-lg shadow-md p-2 flex flex-row items-center w-max gap-2">
-        <img
-          className="flag-avatar shrink-0 rounded-full border border-gray-300 shadow-lg"
+      <div className="card bg-gray-200 border border-black rounded-lg shadow-md p-2 flex flex-row items-center gap-2 max-w-full">
+        
+        <div className="img flex-none w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24">
+          <img
+          className="flag-avatar bg-gray-400 w-full h-full object-contain rounded-full border border-gray-300 shadow-lg"
           src={`https://flagcdn.com/w80/${props.countryCode.toLowerCase()}.jpg`}
           alt="flag-avatar"
         />
-        <div className="content flex flex-col justify-center gap-1">
-          <div className="line-1 flex flex-row gap-2 divide-x-2 just items-center">
+        </div>
+
+        <div className="content flex-1 min-w-0 flex flex-col justify-center gap-1 max-w-[calc(100%-5rem)]">
+          
+          <div className="line-1 flex flex-row flex-wrap gap-2 divide-x-2 items-center wrap-break-word">
             <span className="country pr-2">{props.countryName}</span>
             <span className="year pr-2">
               Joined in: {props.timestamp.slice(0, 4)}
@@ -28,7 +33,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
             <span className="gender">{props.gender.toLowerCase()}</span>
           </div>
 
-          <div className="line-2 flex flex-row gap-2 divide-x-2 items-center">
+          <div className="line-2 flex flex-row flex-wrap gap-2 divide-x-2 items-center wrap-break-word">
             <span className="role pr-2">
               {props.roleType} {props.voyageRole}
             </span>
@@ -43,6 +48,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
             <span className="voyage-num">
               Voyage: {props.voyageNum.length > 0 ? props.voyageNum : "-"}
             </span>
+
           </div>
         </div>
       </div>
