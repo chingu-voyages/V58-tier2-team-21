@@ -5,15 +5,22 @@ export default function ChinguFilter() {
         <input
           type="search"
           id="chingu-search"
-          placeholder="Search for keyword"
+          placeholder="Keywords come here"
+          className="border border-gray-400 p-1 rounded-lg mb-2 mr-2"
         />
         <button type="submit">Search</button>
         <div>
-          <input type="range" name="joined" id="joined" min="1999" max="2025" />
           <label htmlFor="joined">Year of joining</label>
+          <input 
+            type="range"
+            name="joined"
+            id="joined"
+            min="1999"
+            max="2025"
+            className="my-2 mr-2 block" />
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Gender</legend>
             <div>
               <input type="checkbox" id="female" name="female" value="female" />
@@ -35,7 +42,7 @@ export default function ChinguFilter() {
           </fieldset>
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Country</legend>
             <div>
               <input
@@ -58,7 +65,7 @@ export default function ChinguFilter() {
           </fieldset>
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Role Type</legend>
             <div>
               <input
@@ -81,7 +88,7 @@ export default function ChinguFilter() {
           </fieldset>
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Voyage Role</legend>
             <div>
               <input
@@ -122,7 +129,7 @@ export default function ChinguFilter() {
           </fieldset>
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Solo Project Tier</legend>
             <div>
               <input
@@ -140,7 +147,7 @@ export default function ChinguFilter() {
                 name="solo-tier-2"
                 value="solo-tier-2"
               />
-              <label htmlFor="solo-tier-2">Tier 1</label>
+              <label htmlFor="solo-tier-2">Tier 2</label>
             </div>
             <div>
               <input
@@ -149,12 +156,12 @@ export default function ChinguFilter() {
                 name="solo-tier-3"
                 value="solo-tier-3"
               />
-              <label htmlFor="solo-tier-3">Tier 1</label>
+              <label htmlFor="solo-tier-3">Tier 3</label>
             </div>
           </fieldset>
         </div>
         <div>
-          <fieldset>
+          <fieldset className="mb-4">
             <legend>Voyage Tier</legend>
             <div>
               <input
@@ -172,7 +179,7 @@ export default function ChinguFilter() {
                 name="voyage-tier-2"
                 value="voyage-tier-2"
               />
-              <label htmlFor="voyage-tier-2">Tier 1</label>
+              <label htmlFor="voyage-tier-2">Tier 2</label>
             </div>
             <div>
               <input
@@ -181,7 +188,7 @@ export default function ChinguFilter() {
                 name="voyage-tier-3"
                 value="voyage-tier-3"
               />
-              <label htmlFor="voyage-tier-3">Tier 1</label>
+              <label htmlFor="voyage-tier-3">Tier 3</label>
             </div>
           </fieldset>
         </div>
@@ -190,8 +197,8 @@ export default function ChinguFilter() {
           <label htmlFor="voyage">Voyage</label>
         </div>
       </form>
-      <div className="buttons">
-        <button type="submit">Submit</button>
+      <div className="buttons mt-4">
+        <button type="submit" className="mr-4">Submit</button>
         <button>Clear</button>
       </div>
     </>
