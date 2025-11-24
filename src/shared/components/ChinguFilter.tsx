@@ -2,13 +2,6 @@ export default function ChinguFilter() {
   return (
     <>
       <form action="">
-        <input
-          type="search"
-          id="chingu-search"
-          placeholder="Keywords come here"
-          className="border border-gray-400 p-1 rounded-lg mb-2 mr-2"
-        />
-        <button type="submit">Search</button>
         <div>
           <label htmlFor="joined">Year of joining</label>
           <input 
