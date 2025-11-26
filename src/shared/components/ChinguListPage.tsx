@@ -79,8 +79,8 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
   const filteredList = searchTerm === "" ? data : getFilteredList();
 
   return (
-    <div className="flex flex-row gap-4">
-      <div className="md:w-1/3 lg:w-1/4 bg-gray-200 border border-gray-400 rounded-lg p-2">
+    <div className="grid grid-cols-[15rem_1fr] gap-4 items-start w-full overflow-hidden">
+      <div className="h-screen overflow-y-auto pr-1 bg-gray-200 border border-gray-400 rounded-lg p-2">
         <ChingueSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ChinguFilter
           handleSubmit={handleSubmit}
