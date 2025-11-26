@@ -8,16 +8,15 @@ export default function ChingueSearch({
   setSearchTerm,
 }: ChinguSearchProps) {
   return (
-    <div>
+    <div className="flex flex-col">
       <input
         type="text"
         id="chingu-search"
-        placeholder="Keywords come here"
+        placeholder="Type keyword here"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border border-gray-400 p-1 rounded-lg mb-2 mr-2"
+        className="flex-1 border border-gray-400 px-2 py-1 rounded-lg mb-2 mr-2"
       />
-      <button type="submit">Search</button>
     </div>
   );
 }

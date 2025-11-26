@@ -1,198 +1,279 @@
-export default function ChinguFilter() {
+import type { FilterStateType } from "./ChinguListPage";
+import Button from "./Button";
+
+type ChinguFilterProps = {
+  handleSubmit: () => void;
+  handleClear: () => void;
+  handleChange: (
+    category: keyof FilterStateType,
+    value: string,
+    checked: boolean,
+  ) => void;
+  filter: FilterStateType;
+};
+
+const genderOptions = [
+  { value: "female", label: "Female" },
+  { value: "male", label: "Male" },
+  { value: "non-binary", label: "Non-binary" },
+];
+const roleTypeOptions = [
+  { value: "role-python", label: "Python" },
+  { value: "role-web", label: "Web" },
+];
+const voyageRoleOptions = [
+  { value: "voyage-role-dev", label: "Developer" },
+  { value: "voyage-role-ui", label: "UI/UX Designer" },
+  { value: "voyage-role-scrum", label: "Scrum Master" },
+  { value: "voyage-role-owner", label: "Product Owner" },
+];
+const soloProjectTier = [
+  { value: "solo-tier-1", label: "Tier 1" },
+  { value: "solo-tier-2", label: "Tier 2" },
+  { value: "solo-tier-3", label: "Tier 3" },
+];
+const voyageTier = [
+  { value: "voyage-tier-1", label: "Tier 1" },
+  { value: "voyage-tier-2", label: "Tier 2" },
+  { value: "voyage-tier-3", label: "Tier 3" },
+];
+
+export default function ChinguFilter({
+  handleSubmit,
+  handleClear,
+  handleChange,
+  filter,
+}: ChinguFilterProps) {
   return (
     <>
       <form action="">
         <div>
-          <label htmlFor="joined">Year of joining</label>
-          <input 
-            type="range"
-            name="joined"
-            id="joined"
-            min="1999"
-            max="2025"
-            className="my-2 mr-2 block" />
+          <fieldset className="my-4 p-2">
+            <legend className="text-lg">Year of joining</legend>
+            <input
+              type="number"
+              name="min-joined"
+              id="min-joined"
+              placeholder="From year:"
+              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+            <input
+              type="number"
+              name="max-joined"
+              id="max-joined"
+              placeholder="To year:"
+              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+          </fieldset>
         </div>
-        <div>
-          <fieldset className="mb-4">
-            <legend>Gender</legend>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Gender</legend>
+            {genderOptions.map((option) => (
+              <div key={option.value}>
+                <label
+                  htmlFor={`gender-${option.value}`}
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    id={`gender-${option.value}`}
+                    value={option.value}
+                    checked={filter.gender.includes(option.value)}
+                    onChange={(e) =>
+                      handleChange("gender", e.target.value, e.target.checked)
+                    }
+                    className="hover:cursor-pointer"
+                  />
+                  {option.label}
+                </label>
+              </div>
+            ))}
+          </fieldset>
+        </div>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Country</legend>
             <div>
-              <input type="checkbox" id="female" name="female" value="female" />
-              <label htmlFor="female">Female</label>
+              <label
+                htmlFor="country-desc"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="country-desc"
+                  name="countryOrder"
+                  value="country-desc"
+                  className="hover:cursor-pointer"
+                />
+                Descending order
+              </label>
             </div>
             <div>
-              <input type="checkbox" id="male" name="male" value="male" />
-              <label htmlFor="male">Male</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="non-binary"
-                name="non-binary"
-                value="non-binary"
-              />
-              <label htmlFor="non-binary">Non-binary</label>
+              <label
+                htmlFor="country-asc"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="country-asc"
+                  name="countryOrder"
+                  value="country-asc"
+                  className="hover:cursor-pointer"
+                />
+                Ascending order
+              </label>
             </div>
           </fieldset>
         </div>
-        <div>
-          <fieldset className="mb-4">
-            <legend>Country</legend>
-            <div>
-              <input
-                type="radio"
-                id="country-desc"
-                name="country-desc"
-                value="country-desc"
-              />
-              <label htmlFor="country-desc">Descending order</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="country-asc"
-                name="country-asc"
-                value="country-asc"
-              />
-              <label htmlFor="country-asc">Ascending order</label>
-            </div>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Role Type</legend>
+            {roleTypeOptions.map((option) => (
+              <div key={option.value}>
+                <label
+                  htmlFor={`roleType-${option.value}`}
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    id={`roleType-${option.value}`}
+                    value={option.value}
+                    checked={filter.roleType.includes(option.value)}
+                    onChange={(e) =>
+                      handleChange("roleType", e.target.value, e.target.checked)
+                    }
+                    className="hover:cursor-pointer"
+                  />
+                  {option.label}
+                </label>
+              </div>
+            ))}
           </fieldset>
         </div>
-        <div>
-          <fieldset className="mb-4">
-            <legend>Role Type</legend>
-            <div>
-              <input
-                type="checkbox"
-                id="role-python"
-                name="role-python"
-                value="role-python"
-              />
-              <label htmlFor="role-python">Python</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="role-web"
-                name="role-web"
-                value="role-web"
-              />
-              <label htmlFor="role-web">Web</label>
-            </div>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Voyage Role</legend>
+            {voyageRoleOptions.map((option) => (
+              <div key={option.value}>
+                <label
+                  htmlFor={`voyageRole-${option.value}`}
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    id={`voyageRole-${option.value}`}
+                    value={option.value}
+                    checked={filter.voyageRole.includes(option.value)}
+                    onChange={(e) =>
+                      handleChange(
+                        "voyageRole",
+                        e.target.value,
+                        e.target.checked,
+                      )
+                    }
+                    className="hover:cursor-pointer"
+                  />
+
+                  {option.label}
+                </label>
+              </div>
+            ))}
           </fieldset>
         </div>
-        <div>
-          <fieldset className="mb-4">
-            <legend>Voyage Role</legend>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-role-dev"
-                name="voyage-role-dev"
-                value="voyage-role-dev"
-              />
-              <label htmlFor="voyage-role-dev">Developer</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-role-ui"
-                name="voyage-role-ui"
-                value="voyage-role-ui"
-              />
-              <label htmlFor="voyage-role-ui">UI/UX Designer</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-role-scrum"
-                name="voyage-role-scrum"
-                value="voyage-role-scrum"
-              />
-              <label htmlFor="voyage-role-scrum">Scrum Master</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-role-owner"
-                name="voyage-role-owner"
-                value="voyage-role-owner"
-              />
-              <label htmlFor="voyage-role-owner">Product Owner</label>
-            </div>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Solo Project Tier</legend>
+            {soloProjectTier.map((option) => (
+              <div key={option.value}>
+                <label
+                  htmlFor={`soloTier-${option.value}`}
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    id={`soloTier-${option.value}`}
+                    value={option.value}
+                    checked={filter.soloProjectTier.includes(option.value)}
+                    onChange={(e) =>
+                      handleChange(
+                        "soloProjectTier",
+                        e.target.value,
+                        e.target.checked,
+                      )
+                    }
+                    className="hover:cursor-pointer"
+                  />
+                  {option.label}
+                </label>
+              </div>
+            ))}
           </fieldset>
         </div>
-        <div>
-          <fieldset className="mb-4">
-            <legend>Solo Project Tier</legend>
-            <div>
-              <input
-                type="checkbox"
-                id="solo-tier-1"
-                name="solo-tier-1"
-                value="solo-tier-1"
-              />
-              <label htmlFor="solo-tier-1">Tier 1</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="solo-tier-2"
-                name="solo-tier-2"
-                value="solo-tier-2"
-              />
-              <label htmlFor="solo-tier-2">Tier 2</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="solo-tier-3"
-                name="solo-tier-3"
-                value="solo-tier-3"
-              />
-              <label htmlFor="solo-tier-3">Tier 3</label>
-            </div>
+
+        <div className="flex flex-col">
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Voyage Tier</legend>
+            {voyageTier.map((option) => (
+              <div key={option.value}>
+                <label
+                  htmlFor={`voyageTier-${option.value}`}
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    id={`voyageTier-${option.value}`}
+                    value={option.value}
+                    checked={filter.voyageTier.includes(option.value)}
+                    onChange={(e) =>
+                      handleChange(
+                        "voyageTier",
+                        e.target.value,
+                        e.target.checked,
+                      )
+                    }
+                    className="hover:cursor-pointer"
+                  />
+                  {option.label}
+                </label>
+              </div>
+            ))}
           </fieldset>
         </div>
+
         <div>
-          <fieldset className="mb-4">
-            <legend>Voyage Tier</legend>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-tier-1"
-                name="voyage-tier-1"
-                value="voyage-tier-1"
-              />
-              <label htmlFor="voyage-tier-1">Tier 1</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-tier-2"
-                name="voyage-tier-2"
-                value="voyage-tier-2"
-              />
-              <label htmlFor="voyage-tier-2">Tier 2</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="voyage-tier-3"
-                name="voyage-tier-3"
-                value="voyage-tier-3"
-              />
-              <label htmlFor="voyage-tier-3">Tier 3</label>
-            </div>
+          <fieldset className="mb-4 p-2">
+            <legend className="text-lg">Voyage</legend>
+            <input
+              type="number"
+              name="min-voyage"
+              id="min-voyage"
+              placeholder="From Voyage:"
+              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+            <input
+              type="number"
+              name="max-voyage"
+              id="max-voyage"
+              placeholder="To Voyage:"
+              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
           </fieldset>
-        </div>
-        <div>
-          <input type="range" name="voyage" id="voyage" min="0" max="60" />
-          <label htmlFor="voyage">Voyage</label>
         </div>
       </form>
-      <div className="buttons mt-4">
-        <button type="submit" className="mr-4">Submit</button>
-        <button>Clear</button>
+
+      <div className="buttons mt-4 flex justify-around gap-4">
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
+        <Button variant="secondary" onClick={handleClear}>
+          Clear
+        </Button>
       </div>
     </>
   );

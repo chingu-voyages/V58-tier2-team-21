@@ -8,8 +8,31 @@ type ChinguListPageProps = {
   data: ChinguCardPropsType[];
 };
 
+export type FilterStateType = {
+  gender: string[];
+  countryName: string[],
+  countryCode: string[],
+  roleType: string[],
+  voyageRole: string[],
+  soloProjectTier: string[],
+  voyageTier: string[],
+  voyageNum: string[],
+  timestamp: string[],
+}
+
 export default function ChinguListPage({ data }: ChinguListPageProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filter, setFilter] = useState<FilterStateType>({
+    gender: [],
+    countryName: [],
+    countryCode: [],
+    roleType: [],
+    voyageRole: [],
+    soloProjectTier: [],
+    voyageTier: [],
+    voyageNum: [],
+    timestamp: [],
+  });
 
   const searchableFields: (keyof ChinguCardPropsType)[] = [
     "gender",
@@ -31,13 +54,40 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     );
   }
 
+  function handleSubmit() {
+    alert("Clicked!");
+  }
+
+  function handleClear() {
+    alert("Cleared!");
+  }
+
+  function handleChange(
+    category: keyof FilterStateType,
+    value: string,
+    checked: boolean,
+  ) {
+    setFilter((prev) => {
+      const newArray = checked
+        ? [...prev[category], value]
+        : prev[category].filter((v) => v !== value);
+
+      return { ...prev, [category]: newArray };
+    });
+  }
+
   const filteredList = searchTerm === "" ? data : getFilteredList();
 
   return (
     <div className="flex flex-row gap-4">
       <div className="md:w-1/3 lg:w-1/4 bg-gray-200 border border-gray-400 rounded-lg p-2">
         <ChingueSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <ChinguFilter />
+        <ChinguFilter
+          handleSubmit={handleSubmit}
+          handleClear={handleClear}
+          handleChange={handleChange}
+          filter={filter}
+        />
       </div>
       <div className="flex-1">
         <ChinguList data={filteredList} />
