@@ -2,7 +2,7 @@ import ChinguFilter from "./ChinguFilter";
 import ChinguList from "./ChinguList";
 import type { ChinguCardPropsType } from "./ChinguCard";
 import ChingueSearch from "./ChinguSearch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type ChinguListPageProps = {
   data: ChinguCardPropsType[];
@@ -48,6 +48,9 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     voyageNum: [],
     timestamp: [],
   });
+  const [appliedFilter, setAppliedFilter] = useState<FilterStateType | null>(
+    null,
+  );
   const [filteredList, setFilteredList] = useState<ChinguCardPropsType[]>(data);
 
   const arrayFilterKeys: ArrayFilterKey[] = [
@@ -72,45 +75,59 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     "timestamp",
   ];
 
-  function applyFilters(): ChinguCardPropsType[] {
-    // searchTerm applied
-    let result = data.filter((chingu) =>
+  // helper function for keyword search
+  function applySearchToList(
+    list: ChinguCardPropsType[],
+    term: string,
+  ): ChinguCardPropsType[] {
+    if (!term || term.trim() === "") return list;
+    const lower = term.toLowerCase();
+    return list.filter((chingu) =>
       searchableFields.some((field) =>
-        chingu[field].toLowerCase().includes(searchTerm.toLowerCase()),
+        String(chingu[field]).toLowerCase().includes(lower),
       ),
     );
+  }
 
-    // array filters
-    result = result.filter((chingu) => {
+  //helper function to apply filters
+  function applyFiltersToList(
+    list: ChinguCardPropsType[],
+    filter: FilterStateType
+  ): ChinguCardPropsType[] {
+    let result = list.filter((chingu) => {
       for (const key of arrayFilterKeys) {
         const selectedValues = filter[key];
-        if (selectedValues.length > 0 && !selectedValues.includes(chingu[key]))
-          return false;
+        if (selectedValues && selectedValues.length > 0) {
+          if (!selectedValues.includes(chingu[key])) return false;
+        }
       }
-      return true;
-    });
 
     // Numbers
-    result = result.filter((chingu) => {
-      const year = Number(chingu.timestamp.slice(0, 4));
+      const yearStr = String(chingu.timestamp || "").slice(0, 4);
+      const year = Number(yearStr);
       if (
         filter.yearOfJoiningMin !== undefined &&
-        year < filter.yearOfJoiningMin
-      )
-        return false;
+        Number.isFinite(year)
+      ) {
+        if (year < filter.yearOfJoiningMin) return false;
+      }
+        
       if (
         filter.yearOfJoiningMax !== undefined &&
-        year > filter.yearOfJoiningMax
-      )
-        return false;
+        Number.isFinite(year)
+      ) {
+        if (year < filter.yearOfJoiningMax) return false;
+      }
 
-      const voyage = Number(chingu.voyageNum.slice(1));
-      if (filter.voyageNumMin !== undefined && voyage < filter.voyageNumMin)
-        return false;
-      if (filter.voyageNumMax !== undefined && voyage > filter.voyageNumMax)
-        return false;
+      const voyageNumRaw = String(chingu.voyageNum || "");
+      const voyage = Number(voyageNumRaw.slice(1));
+      if (filter.voyageNumMin !== undefined && Number.isFinite(voyage)) {
+        if (voyage < filter.voyageNumMin) return false;
+      }
+      if (filter.voyageNumMax !== undefined && Number.isFinite(voyage)) {
+        if (voyage < filter.voyageNumMax) return false;
+      }  
 
-      // All filters passed
       return true;
     });
 
@@ -131,8 +148,19 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     return result;
   }
 
+  useEffect(() => {
+    const base = appliedFilter ? applyFiltersToList(data, appliedFilter) : data;
+    const result = applySearchToList(base, searchTerm);
+    setFilteredList(result);
+  }, [searchTerm, appliedFilter, data]);
+
+
   function handleSubmit() {
-    const newList = applyFilters();
+    const snapshot = { ...filter };
+    setAppliedFilter(snapshot);
+
+    const searchBase = applySearchToList(data, searchTerm);
+    const newList = applyFiltersToList(searchBase, snapshot);
     setFilteredList(newList);
   }
 
@@ -141,14 +169,16 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
       gender: [],
       countryName: [],
       countryCode: [],
+      countryOrder: "",
       roleType: [],
       voyageRole: [],
       soloProjectTier: [],
       voyageTier: [],
       voyageNum: [],
       timestamp: [],
-      countryOrder: "",
     });
+
+    setAppliedFilter(null);
     setSearchTerm("");
     setFilteredList(data);
   }
