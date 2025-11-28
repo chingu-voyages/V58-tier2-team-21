@@ -1,4 +1,4 @@
-import type { ArrayFilterKey, FilterStateType } from "./ChinguListPage";
+import type { ArrayFilterKey, FilterStateType } from "../../hooks/useChinguFiltering";
 import Button from "./Button";
 
 type ChinguFilterProps = {
