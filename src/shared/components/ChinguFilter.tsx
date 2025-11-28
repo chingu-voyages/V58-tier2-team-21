@@ -1,13 +1,24 @@
-import type { FilterStateType } from "./ChinguListPage";
+import type { ArrayFilterKey, FilterStateType } from "./ChinguListPage";
 import Button from "./Button";
 
 type ChinguFilterProps = {
   handleSubmit: () => void;
   handleClear: () => void;
   handleChange: (
-    category: keyof FilterStateType,
+    category: ArrayFilterKey,
     value: string,
     checked: boolean,
+  ) => void;
+  handleNumericChange: (
+    category:
+      | "yearOfJoiningMin"
+      | "yearOfJoiningMax"
+      | "voyageNumMin"
+      | "voyageNumMax",
+    value: string,
+  ) => void;
+  handleCountryOrderChange: (
+    value: "country-asc" | "country-desc",
   ) => void;
   filter: FilterStateType;
 };
@@ -18,30 +29,32 @@ const genderOptions = [
   { value: "non-binary", label: "Non-binary" },
 ];
 const roleTypeOptions = [
-  { value: "role-python", label: "Python" },
-  { value: "role-web", label: "Web" },
+  { value: "Python", label: "Python" },
+  { value: "Web", label: "Web" },
 ];
 const voyageRoleOptions = [
-  { value: "voyage-role-dev", label: "Developer" },
-  { value: "voyage-role-ui", label: "UI/UX Designer" },
-  { value: "voyage-role-scrum", label: "Scrum Master" },
-  { value: "voyage-role-owner", label: "Product Owner" },
+  { value: "Developer", label: "Developer" },
+  { value: "UI/UX Designer", label: "UI/UX Designer" },
+  { value: "Scrum Master", label: "Scrum Master" },
+  { value: "Product Owner", label: "Product Owner" },
 ];
 const soloProjectTier = [
-  { value: "solo-tier-1", label: "Tier 1" },
-  { value: "solo-tier-2", label: "Tier 2" },
-  { value: "solo-tier-3", label: "Tier 3" },
+  { value: "Tier 1", label: "Tier 1" },
+  { value: "Tier 2", label: "Tier 2" },
+  { value: "Tier 3", label: "Tier 3" },
 ];
 const voyageTier = [
-  { value: "voyage-tier-1", label: "Tier 1" },
-  { value: "voyage-tier-2", label: "Tier 2" },
-  { value: "voyage-tier-3", label: "Tier 3" },
+  { value: "Tier 1", label: "Tier 1" },
+  { value: "Tier 2", label: "Tier 2" },
+  { value: "Tier 3", label: "Tier 3" },
 ];
 
 export default function ChinguFilter({
   handleSubmit,
   handleClear,
   handleChange,
+  handleNumericChange,
+  handleCountryOrderChange,
   filter,
 }: ChinguFilterProps) {
   return (
@@ -55,6 +68,10 @@ export default function ChinguFilter({
               name="min-joined"
               id="min-joined"
               placeholder="From year:"
+              value={filter.yearOfJoiningMin ?? ""}
+              onChange={(e) =>
+                handleNumericChange("yearOfJoiningMin", e.target.value)
+              }
               className="border border-gray-400 p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
@@ -62,6 +79,10 @@ export default function ChinguFilter({
               name="max-joined"
               id="max-joined"
               placeholder="To year:"
+              value={filter.yearOfJoiningMax ?? ""}
+              onChange={(e) =>
+                handleNumericChange("yearOfJoiningMax", e.target.value)
+              }
               className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>
@@ -106,6 +127,9 @@ export default function ChinguFilter({
                   id="country-desc"
                   name="countryOrder"
                   value="country-desc"
+                  onChange={() => 
+                    handleCountryOrderChange("country-desc")
+                  }
                   className="hover:cursor-pointer"
                 />
                 Descending order
@@ -121,6 +145,9 @@ export default function ChinguFilter({
                   id="country-asc"
                   name="countryOrder"
                   value="country-asc"
+                  onChange={() =>
+                    handleCountryOrderChange("country-asc")
+                  }
                   className="hover:cursor-pointer"
                 />
                 Ascending order
@@ -254,6 +281,10 @@ export default function ChinguFilter({
               name="min-voyage"
               id="min-voyage"
               placeholder="From Voyage:"
+              value={filter.voyageNumMin ?? ""}
+              onChange={(e) =>
+                handleNumericChange("voyageNumMin", e.target.value)
+              }
               className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
@@ -261,6 +292,10 @@ export default function ChinguFilter({
               name="max-voyage"
               id="max-voyage"
               placeholder="To Voyage:"
+              value={filter.voyageNumMax ?? ""}
+              onChange={(e) =>
+                handleNumericChange("voyageNumMax", e.target.value)
+              }
               className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>

@@ -8,17 +8,31 @@ type ChinguListPageProps = {
   data: ChinguCardPropsType[];
 };
 
+export type ArrayFilterKey =
+  | "gender"
+  | "roleType"
+  | "voyageRole"
+  | "soloProjectTier"
+  | "voyageTier"
+  | "countryName"
+  | "countryCode";
+
 export type FilterStateType = {
+  yearOfJoiningMin?: number;
+  yearOfJoiningMax?: number;
+  voyageNumMin?: number;
+  voyageNumMax?: number;
   gender: string[];
-  countryName: string[],
-  countryCode: string[],
-  roleType: string[],
-  voyageRole: string[],
-  soloProjectTier: string[],
-  voyageTier: string[],
-  voyageNum: string[],
-  timestamp: string[],
-}
+  countryName: string[];
+  countryCode: string[];
+  countryOrder?: "country-asc" | "country-desc" | "";
+  roleType: string[];
+  voyageRole: string[];
+  soloProjectTier: string[];
+  voyageTier: string[];
+  voyageNum: string[];
+  timestamp: string[];
+};
 
 export default function ChinguListPage({ data }: ChinguListPageProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -26,6 +40,7 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     gender: [],
     countryName: [],
     countryCode: [],
+    countryOrder: "",
     roleType: [],
     voyageRole: [],
     soloProjectTier: [],
@@ -33,6 +48,17 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     voyageNum: [],
     timestamp: [],
   });
+  const [filteredList, setFilteredList] = useState<ChinguCardPropsType[]>(data);
+
+  const arrayFilterKeys: ArrayFilterKey[] = [
+    "gender",
+    "roleType",
+    "voyageRole",
+    "soloProjectTier",
+    "voyageTier",
+    "countryName",
+    "countryCode",
+  ];
 
   const searchableFields: (keyof ChinguCardPropsType)[] = [
     "gender",
@@ -46,24 +72,89 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     "timestamp",
   ];
 
-  function getFilteredList() {
-    return data.filter((chingu) =>
+  function applyFilters(): ChinguCardPropsType[] {
+    // searchTerm applied
+    let result = data.filter((chingu) =>
       searchableFields.some((field) =>
         chingu[field].toLowerCase().includes(searchTerm.toLowerCase()),
       ),
     );
+
+    // array filters
+    result = result.filter((chingu) => {
+      for (const key of arrayFilterKeys) {
+        const selectedValues = filter[key];
+        if (selectedValues.length > 0 && !selectedValues.includes(chingu[key]))
+          return false;
+      }
+      return true;
+    });
+
+    // Numbers
+    result = result.filter((chingu) => {
+      const year = Number(chingu.timestamp.slice(0, 4));
+      if (
+        filter.yearOfJoiningMin !== undefined &&
+        year < filter.yearOfJoiningMin
+      )
+        return false;
+      if (
+        filter.yearOfJoiningMax !== undefined &&
+        year > filter.yearOfJoiningMax
+      )
+        return false;
+
+      const voyage = Number(chingu.voyageNum.slice(1));
+      if (filter.voyageNumMin !== undefined && voyage < filter.voyageNumMin)
+        return false;
+      if (filter.voyageNumMax !== undefined && voyage > filter.voyageNumMax)
+        return false;
+
+      // All filters passed
+      return true;
+    });
+
+    const sortOption = filter.countryOrder;
+
+    if (sortOption === "country-asc") {
+      result = [...result].sort((a, b) =>
+        a.countryName.localeCompare(b.countryName),
+      );
+    }
+
+    if (sortOption === "country-desc") {
+      result = [...result]
+        .sort((a, b) => a.countryName.localeCompare(b.countryName))
+        .reverse();
+    }
+
+    return result;
   }
 
   function handleSubmit() {
-    alert("Clicked!");
+    const newList = applyFilters();
+    setFilteredList(newList);
   }
 
   function handleClear() {
-    alert("Cleared!");
+    setFilter({
+      gender: [],
+      countryName: [],
+      countryCode: [],
+      roleType: [],
+      voyageRole: [],
+      soloProjectTier: [],
+      voyageTier: [],
+      voyageNum: [],
+      timestamp: [],
+      countryOrder: "",
+    });
+    setSearchTerm("");
+    setFilteredList(data);
   }
 
   function handleChange(
-    category: keyof FilterStateType,
+    category: ArrayFilterKey,
     value: string,
     checked: boolean,
   ) {
@@ -71,12 +162,30 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
       const newArray = checked
         ? [...prev[category], value]
         : prev[category].filter((v) => v !== value);
-
       return { ...prev, [category]: newArray };
     });
   }
 
-  const filteredList = searchTerm === "" ? data : getFilteredList();
+  function handleNumericChange(
+    category:
+      | "yearOfJoiningMin"
+      | "yearOfJoiningMax"
+      | "voyageNumMin"
+      | "voyageNumMax",
+    value: string,
+  ) {
+    setFilter((prev) => ({
+      ...prev,
+      [category]: value ? Number(value) : undefined,
+    }));
+  }
+
+  function handleCountryOrderChange(value: "country-asc" | "country-desc") {
+    setFilter((prev) => ({
+      ...prev,
+      countryOrder: value,
+    }));
+  }
 
   return (
     <div className="grid grid-cols-[15rem_1fr] gap-4 items-start w-full overflow-hidden">
@@ -86,6 +195,8 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
           handleSubmit={handleSubmit}
           handleClear={handleClear}
           handleChange={handleChange}
+          handleNumericChange={handleNumericChange}
+          handleCountryOrderChange={handleCountryOrderChange}
           filter={filter}
         />
       </div>
