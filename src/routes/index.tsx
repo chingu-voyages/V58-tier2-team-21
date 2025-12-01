@@ -1,12 +1,5 @@
-import { createBrowserRouter } from "react-router";
-
-import App from "../App.tsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
-
-export default router;
+export default function Index() {
+  return (
+    <p>this is the index page</p>
+  )
+}
