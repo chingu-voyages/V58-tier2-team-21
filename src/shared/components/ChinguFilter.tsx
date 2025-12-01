@@ -27,6 +27,7 @@ const genderOptions = [
   { value: "female", label: "Female" },
   { value: "male", label: "Male" },
   { value: "non-binary", label: "Non-binary" },
+  { value: "prefer not to say", label: "Prefer not to say"}
 ];
 const roleTypeOptions = [
   { value: "Python", label: "Python" },

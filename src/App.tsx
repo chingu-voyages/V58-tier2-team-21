@@ -5,7 +5,7 @@ import type { ChinguCardPropsType } from "./shared/components/ChinguCard";
 
 const chinguData: ChinguCardPropsType[] = rawData.map((item) => ({
   timestamp: item.Timestamp,
-  gender: item.Gender,
+  gender: item.Gender.trim().toLowerCase(),
   countryCode: item["Country Code"],
   countryName: item["Country name (from Country)"],
   roleType: item["Role Type"],
