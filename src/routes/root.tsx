@@ -1,7 +1,15 @@
+import Header from "../components/header/Header"
+import Footer from "../components/footer/Footer"
 import { Outlet } from "react-router"
 
 export default function Root() {
   return (
-    <Outlet />
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }
