@@ -12,7 +12,6 @@ export type ChinguCardPropsType = {
 
 export default function ChinguCard(props: ChinguCardPropsType) {
   return (
-    <>
       <div className="card bg-gray-200 border border-gray-400 rounded-lg shadow-md p-2 flex flex-row items-center w-full gap-1 md:gap-2 lg:gap-4">
         <img
           className="flag-avatar shrink-0 rounded-full border border-gray-300 shadow-lg"
@@ -46,6 +45,5 @@ export default function ChinguCard(props: ChinguCardPropsType) {
           </div>
         </div>
       </div>
-    </>
   );
 }

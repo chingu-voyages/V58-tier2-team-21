@@ -79,7 +79,7 @@ function applyFiltersToList(
     }
 
     if (filter.yearOfJoiningMax !== undefined && Number.isFinite(year)) {
-      if (year < filter.yearOfJoiningMax) return false;
+      if (year > filter.yearOfJoiningMax) return false;
     }
 
     const voyageNumRaw = String(chingu.voyageNum || "");
@@ -88,7 +88,7 @@ function applyFiltersToList(
       if (voyage < filter.voyageNumMin) return false;
     }
     if (filter.voyageNumMax !== undefined && Number.isFinite(voyage)) {
-      if (voyage < filter.voyageNumMax) return false;
+      if (voyage > filter.voyageNumMax) return false;
     }
 
     return true;
