@@ -8,7 +8,7 @@ type HeaderLinkProps = {
 export default function HeaderLink({text, to}:HeaderLinkProps) {
   return (
     <NavLink
-      className="text-(--white-200) hover:text-(--primary-light) font-bold text-lg sm:text-base"
+      className="text-(--color-white-200) hover:text-(--color-primary-light) font-bold text-lg sm:text-base"
       to={to}
     >{text}</NavLink>
   )

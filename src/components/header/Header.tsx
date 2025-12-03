@@ -4,12 +4,12 @@ import HeaderNav from "./HeaderNav.tsx";
 
 export default function Header() {
   return (
-    <header className="text-(--white-100) py-6 sm:py-8 relative">
+    <header className="text-(--color-white-100) py-6 sm:py-8 relative">
       <Container>
         <div className="flex justify-between">
           <h1 className="font-bold text-xl">
-            <span className="text-(--primary-light)">Chingu</span>
-            <span className="text-(--secondary)">Demo</span>
+            <span className="text-(--color-primary-light)">Chingu</span>
+            <span className="text-(--color-secondary)">Demo</span>
           </h1>
           <button className="sm:hidden">
             <img className="h-6 w-6" src={HamburgerIcon} alt="Hamburger icon." />

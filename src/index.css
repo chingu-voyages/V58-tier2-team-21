@@ -6,20 +6,18 @@
 	font-style: normal;
 }
 
-:root {
-	--primary: #3E885B;
-	--primary-light: #2AC065;
+@theme {
+	--color-primary: #3E885B;
+	--color-primary-light: #2AC065;
 
-	--secondary: #7D6B91;
-	--secondary-light: #989FCE;
+	--color-secondary: #7D6B91;
+	--color-secondary-light: #989FCE;
 
-	--white-100: #FFFAFB;
-	--white-200: #F4F4ED;
+	--color-white-100: #FFFAFB;
+	--color-white-200: #F4F4ED;
 
-	--black-100: #2D2E2E;
-	--black-200: #0F0F0F;
-}
+	--color-black-100: #2D2E2E;
+	--color-black-200: #0F0F0F;
 
-body {
-	font-family: Nunito, Inter, sans-serif;
+	--font-sans: Nunito, Inter, sans-serif;
 }

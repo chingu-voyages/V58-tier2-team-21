@@ -5,7 +5,7 @@ import { Outlet } from "react-router"
 
 export default function Root() {
   return (
-    <div className="min-h-screen flex flex-col bg-(--black-100)">
+    <div className="min-h-screen flex flex-col bg-(--color-black-100) text-(--font--sans)">
       <Header />
       <main className="grow">
         <Container>

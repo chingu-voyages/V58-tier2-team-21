@@ -5,7 +5,7 @@ export default function Footer() {
   const date:string = new Date().toDateString();
 
   return (
-    <footer className="bg-(--black-200) text-(--white-200)">
+    <footer className="bg-(--color-black-200) text-(--color-white-200)">
       <Container>
         <div className="py-10 flex flex-col gap-y-12 md:flex-row md:justify-between">
           <section className="flex flex-col justify-between items-start gap-y-6">
