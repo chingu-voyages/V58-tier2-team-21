@@ -10,7 +10,7 @@ export default function HeaderNav() {
         <img className="h-6 w-6" src={CloseIcon} alt="Close icon." />
       </button>
       <ul
-        className="flex flex-col gap-y-4 sm:flex-row sm:items-center gap-x-8 md:gap-x-12 lg:gap-x-16"
+        className="flex flex-col gap-y-4 sm:flex-row sm:items-center gap-x-8 md:gap-x-12 xl:gap-x-16"
       >
         <li><HeaderLink text="Home" to="/" /></li>
         <li><HeaderLink text="List" to="list" /></li>

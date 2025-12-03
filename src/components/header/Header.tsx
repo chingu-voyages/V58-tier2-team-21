@@ -4,7 +4,7 @@ import HeaderNav from "./HeaderNav.tsx";
 
 export default function Header() {
   return (
-    <header className="text-(--white-100) py-6 md:py-8 relative">
+    <header className="text-(--white-100) py-6 sm:py-8 relative">
       <Container>
         <div className="flex justify-between">
           <h1 className="font-bold text-xl">
