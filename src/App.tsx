@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router";
 import ChinguListPage from "./shared/components/ChinguListPage";
 import rawData from "./data/chinguData.json";
 import type { ChinguCardPropsType } from "./shared/components/ChinguCard";
+import Layout from "./shared/components/Layout";
 
 const chinguData: ChinguCardPropsType[] = rawData.map((item) => ({
   timestamp: item.Timestamp,
@@ -22,8 +23,13 @@ function App() {
         <Link to="/chingu">Go to Chingu List</Link>
       </nav>
       <Routes>
-        <Route path="/chingu" element={<ChinguListPage data={chinguData} />} />
-        <Route path="/" element={<h1>Hello World</h1>} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<h1>Hello World</h1>} />
+          <Route
+            path="/chingu"
+            element={<ChinguListPage data={chinguData} />}
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
