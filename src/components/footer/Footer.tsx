@@ -14,7 +14,7 @@ export default function Footer() {
             </a>
             <p className="text-sm italic">{date}</p>
           </section>
-          <section className="flex flex-col gap-6 md:flex-row lg:gap-12 xl:gap-16">
+          <section className="flex flex-col gap-6 justify-between sm:flex-row md:gap-12 xl:gap-16">
             <div className="flex flex-col gap-y-2 md:gap-y-4 h-full">
               <h3 className="font-bold">Product owners</h3>
               <ul className="flex flex-col gap-y-1">
