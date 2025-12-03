@@ -45,37 +45,6 @@ export default function ChinguCard(props: ChinguCardPropsType) {
           </span>
         </div>
       </div>
-      {/* <img
-          className="flag-avatar shrink-0 shadow-lg"
-          src={`https://flagcdn.com/108x81/${props.countryCode.toLowerCase()}.png`}
-          alt="flag-avatar"
-        />
-        <div className="content flex flex-col justify-center items-center gap-6 p-2">
-          <div className="line-1 flex flex-row gap-2 divide-x-2 items-center text-xl text-center">
-            <span className="country pr-2">{props.countryName}</span>
-            <span className="year pr-2">
-              Joined in: {props.timestamp.slice(0, 4)}
-            </span>
-            <span className="gender">{props.gender.toLowerCase()}</span>
-          </div>
-
-          <div className="line-2 flex flex-row gap-2 divide-x-2 items-center text-xl text-center">
-            <span className="role pr-2">
-              {props.roleType} {props.voyageRole}
-            </span>
-            <span className="solo-tier pr-2">
-              Solo tier:{" "}
-              {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
-            </span>
-            <span className="voyage-tier pr-2">
-              Voyage tier:{" "}
-              {props.voyageTier.length > 0 ? props.voyageTier : "-"}
-            </span>
-            <span className="voyage-num">
-              Voyage: {props.voyageNum.length > 0 ? props.voyageNum : "-"}
-            </span>
-          </div>
-        </div> */}
     </div>
   );
 }
