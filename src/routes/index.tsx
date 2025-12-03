@@ -1,5 +1,5 @@
 export default function Index() {
   return (
-    <p>this is the index page</p>
+    <div className="h-96">this is the index page</div>
   )
 }
