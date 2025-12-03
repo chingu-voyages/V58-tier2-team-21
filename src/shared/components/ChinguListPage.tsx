@@ -24,7 +24,7 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
 
   return (
     <div className="grid grid-cols-[15rem_1fr] gap-4 items-start w-full overflow-hidden">
-      <div className="h-screen overflow-y-auto pr-1 bg-gray-200 border border-gray-400 rounded-lg p-2">
+      <div className="bg-primaryDark h-screen overflow-y-auto scrollbar scrollbar-track-primaryDark scrollbar-thumb-backgroundLighter pr-2 rounded-lg p-2">
         <ChingueSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ChinguFilter
           handleSubmit={handleSubmit}
