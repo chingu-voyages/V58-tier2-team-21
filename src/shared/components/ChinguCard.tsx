@@ -13,9 +13,9 @@ export type ChinguCardPropsType = {
 export default function ChinguCard(props: ChinguCardPropsType) {
   const countryCode = props.countryCode.trim().toLowerCase();
   const countryFlag = countryCode === "uk" ? "gb" : countryCode;
-  
+
   return (
-    <div className="card hover:scale-105 transition-transform duration-150 bg-primaryDark border border-gray-400 rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 max-w-xl items-center">
+    <div className="card hover:scale-105 transition-transform duration-150 bg-primaryDark  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 max-w-xl items-center">
       <img
         src={`https://flagcdn.com/80x60/${countryFlag}.png`}
         alt="flag-avatar"
