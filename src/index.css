@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/font/Nunito-VariableFont_wght.ttf') format('truetype');
+	font-style: normal;
+}
+
+:root {
+	--primary: #3E885B;
+	--primary-light: #2AC065;
+
+	--secondary: #7D6B91;
+	--secondary-light: #989FCE;
+
+	--white-100: #FFFAFB;
+	--white-200: #F4F4ED;
+
+	--black-100: #2D2E2E;
+	--black-200: #0F0F0F;
+}
+
+body {
+	font-family: Nunito, Inter, sans-serif;
+}
