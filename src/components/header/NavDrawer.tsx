@@ -25,13 +25,13 @@ export default function NavDrawer({open, setOpen}:NavDrawerProps) {
         aria-label="Main Mobile Menu"
         tabIndex={-1}
         className={clsx(
-          "fixed top-0 right-0 h-full w-64 bg-black-200 shadow-xl transform transition-transform duration-300 ease-out flex flex-col pt-20 px-8",
+          "fixed top-0 right-0 h-full w-64 bg-black-200 shadow-xl transform transition-transform duration-300 ease-out flex flex-col pt-24 px-8",
           open ? "translate-x-0" : "translate-x-full"
         )}
       >
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-0 right-0 cursor-pointer"
+          className="absolute top-6 right-6 cursor-pointer"
         >
           <span className="sr-only">Close menu</span>
           <img className="w-6 h-6" src={CloseIcon} alt="Close menu icon." />

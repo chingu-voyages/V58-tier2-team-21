@@ -17,22 +17,21 @@ export default function Header() {
     <>
       <header>
         <Container>
-          <div className="w-full flex items-center justify-between">
+          <div className="w-full py-6 sm:py-8 flex items-center justify-between">
             <h1 className="font-bold text-xl">
               <span className="text-(--color-primary-light)">Chingu</span>
               <span className="text-(--color-secondary)">Demo</span>
             </h1>
 
-            <nav className="hidden md:flex items-center">
+            <nav className="hidden sm:flex items-center gap-8 md:gap-12 xl:gap-16">
               <HeaderLink text="home" to="/" />
               <HeaderLink text="list" to="list" />
               <HeaderLink text="map" to="map" />
             </nav>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden cursor-pointer"
+              className="sm:hidden cursor-pointer"
               aria-expanded={open}
               aria-controls="mobile-drawer"
             >

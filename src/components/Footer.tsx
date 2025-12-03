@@ -1,5 +1,5 @@
-import Container from "../../shared/components/Container"
-import GithubLogo from "../../assets/img/64-logo-github.svg"
+import Container from "../shared/components/Container.tsx"
+import GithubLogo from "../assets/img/64-logo-github.svg"
 
 export default function Footer() {
   const date:string = new Date().toDateString();
