@@ -27,7 +27,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
           {props.roleType} {props.voyageRole}
         </div>
 
-        <div className="flex flex-wrap flex-1 items-center gap-2 text-md text-textColor">
+        <div className="flex flex-wrap flex-1 items-center gap-2 text-md">
           <span className="font-semibold">{props.countryName}</span>
           <span className="text-backgroundLighter">•</span>
           <span>{props.gender.toLowerCase()}</span>
@@ -36,7 +36,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
         </div>
 
         <div className="flex flex-wrap gap-2 mt-1">
-          <span className="bg-backgroundDarker text-textLight px-3 py-2 rounded-full text-sm">
+          <span className="bg-backgroundDarker text-textColor px-3 py-2 rounded-full text-sm">
             Solo tier:{" "}
             {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
           </span>
