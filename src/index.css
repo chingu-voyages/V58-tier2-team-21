@@ -21,3 +21,55 @@
 
 	--font-sans: Nunito, Inter, sans-serif;
 }
+
+@layer components {
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid white;
+	}
+
+	.nav-expand-btn {
+		display: block;
+	}
+
+	.header-nav {
+		/*positioning*/
+		position: fixed;
+		top: 0;
+		right: 0;
+
+		/*sizing and spacing*/
+		width: 240px;
+		height: 100vh;
+		padding: 8em 2em;
+
+		/*content layout*/
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
+		/*styling*/
+		background-color: var(--color-black-200);
+	}
+
+	@media only screen and (min-width: 640px) {
+		.header-nav {
+			/*positioning*/
+			position: static;
+
+			/*sizing and spacing*/
+			width: auto;
+			height: auto;
+			padding: 0;
+
+			/*content layout*/
+			flex-direction: row;
+			align-items: center;
+
+			/*styling*/
+			background-color: transparent;
+		}
+	}
+}
