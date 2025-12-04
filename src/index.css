@@ -7,17 +7,19 @@
 }
 
 @theme {
-	--color-primary: #3E885B;
-	--color-primary-light: #2AC065;
+	--color-black-100: #34353A;
+	--color-black-200: #27272B;
 
-	--color-secondary: #7D6B91;
-	--color-secondary-light: #989FCE;
+	--color-white-100: #E8E9F3;
+	--color-white-200: #F6F7EB;
 
-	--color-white-100: #FFFAFB;
-	--color-white-200: #F4F4ED;
+	--color-primary: #16E08A;
+	--color-primary-light: #94ECBE;
 
-	--color-black-100: #2D2E2E;
-	--color-black-200: #0F0F0F;
+	--color-secondary: #6279B8;
+	--color-secondary-light: #84A4D2;
 
-	--font-sans: Nunito, Inter, sans-serif;
+	--font-nunito: Nunito, Inter, sans-serif;
 }
+
+@plugin "tailwind-scrollbar";
