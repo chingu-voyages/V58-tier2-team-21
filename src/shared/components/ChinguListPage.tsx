@@ -1,8 +1,8 @@
-import ChinguFilter from "../shared/components/ChinguFilter";
-import ChinguList from "../shared/components/ChinguList";
-import type { ChinguCardPropsType } from "../shared/components/ChinguCard";
-import ChinguSearch from "../shared/components/ChinguSearch";
-import {useChinguFiltering} from "../hooks/useChinguFiltering";
+import ChinguFilter from "./ChinguFilter";
+import ChinguList from "./ChinguList";
+import type { ChinguCardPropsType } from "./ChinguCard";
+import ChinguSearch from "./ChinguSearch";
+import { useChinguFiltering } from "../../hooks/useChinguFiltering";
 
 type ChinguListPageProps = {
   data: ChinguCardPropsType[];
@@ -20,7 +20,7 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
     handleSubmit,
     handleClear,
   } = useChinguFiltering(data);
-
+  
 
   return (
     <div className="grid grid-cols-[15rem_1fr] gap-4 items-start w-full overflow-hidden">
