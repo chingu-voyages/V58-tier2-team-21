@@ -1,4 +1,7 @@
-import type { ArrayFilterKey, FilterStateType } from "../../hooks/useChinguFiltering";
+import type {
+  ArrayFilterKey,
+  FilterStateType,
+} from "../../hooks/useChinguFiltering";
 import Button from "./Button";
 
 type ChinguFilterProps = {
@@ -17,9 +20,7 @@ type ChinguFilterProps = {
       | "voyageNumMax",
     value: string,
   ) => void;
-  handleCountryOrderChange: (
-    value: "country-asc" | "country-desc",
-  ) => void;
+  handleCountryOrderChange: (value: "country-asc" | "country-desc") => void;
   filter: FilterStateType;
 };
 
@@ -27,7 +28,7 @@ const genderOptions = [
   { value: "female", label: "Female" },
   { value: "male", label: "Male" },
   { value: "non-binary", label: "Non-binary" },
-  { value: "prefer not to say", label: "Prefer not to say"}
+  { value: "prefer not to say", label: "Prefer not to say" },
 ];
 const roleTypeOptions = [
   { value: "Python", label: "Python" },
@@ -60,7 +61,7 @@ export default function ChinguFilter({
 }: ChinguFilterProps) {
   return (
     <>
-      <form action="">
+      <form className="bg-primaryDark py-2" action="">
         <div>
           <fieldset className="my-4 p-2">
             <legend className="text-lg">Year of joining</legend>
@@ -73,7 +74,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("yearOfJoiningMin", e.target.value)
               }
-              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
               type="number"
@@ -84,7 +85,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("yearOfJoiningMax", e.target.value)
               }
-              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>
         </div>
@@ -96,7 +97,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`gender-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -121,16 +122,14 @@ export default function ChinguFilter({
             <div>
               <label
                 htmlFor="country-desc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
               >
                 <input
                   type="radio"
                   id="country-desc"
                   name="countryOrder"
                   value="country-desc"
-                  onChange={() => 
-                    handleCountryOrderChange("country-desc")
-                  }
+                  onChange={() => handleCountryOrderChange("country-desc")}
                   className="hover:cursor-pointer"
                 />
                 Descending order
@@ -139,16 +138,14 @@ export default function ChinguFilter({
             <div>
               <label
                 htmlFor="country-asc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
               >
                 <input
                   type="radio"
                   id="country-asc"
                   name="countryOrder"
                   value="country-asc"
-                  onChange={() =>
-                    handleCountryOrderChange("country-asc")
-                  }
+                  onChange={() => handleCountryOrderChange("country-asc")}
                   className="hover:cursor-pointer"
                 />
                 Ascending order
@@ -164,7 +161,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`roleType-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -190,7 +187,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`voyageRole-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -221,7 +218,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`soloTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -251,7 +248,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`voyageTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-gray-300 hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -286,7 +283,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("voyageNumMin", e.target.value)
               }
-              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
               type="number"
@@ -297,13 +294,13 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("voyageNumMax", e.target.value)
               }
-              className="border border-gray-400 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>
         </div>
       </form>
 
-      <div className="buttons mt-4 flex justify-around gap-4">
+      <div className="bg-primaryDark buttons mt-4 flex justify-around gap-4">
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
