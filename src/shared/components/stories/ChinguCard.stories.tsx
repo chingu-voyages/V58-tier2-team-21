@@ -34,13 +34,15 @@ export const DifferentRole: Story = {
   args: {
     roleType: "Python",
     voyageRole: "Product Owner",
+    gender: "prefer not to say",
+    soloProjectTier: "Tier 2, Tier 3",
   },
 };
 
 export const DifferentCountry: Story = {
   args: {
     countryName: "Canada",
-    countryCode: "CA"
+    countryCode: "CA",
   },
 };
 
