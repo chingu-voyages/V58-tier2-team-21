@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Layout from "../src/shared/components/Layout"
+import Layout from "../src/components/Layout";
 import type { StoryFn, StoryContext } from '@storybook/react-vite';
 import '../src/index.css';
 

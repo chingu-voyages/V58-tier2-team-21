@@ -11,8 +11,8 @@ export default function Button({
 }: ButtonPropsType) {
   const classes =
     variant === "primary"
-      ? "bg-secondaryLight text-backgroundLigher px-4 py-2 rounded hover:bg-secondaryDark hover:cursor-pointer disabled:opacity-50"
-      : "bg-backgroundLighter text-white px-4 py-2 rounded hover:bg-gray-500 disabled:opacity-50 hover:cursor-pointer";
+      ? "bg-primary-light text-backgroundLigher px-4 py-2 rounded hover:bg-primary hover:cursor-pointer disabled:opacity-50"
+      : "bg-black-100 text-white px-4 py-2 rounded hover:bg-gray-500 disabled:opacity-50 hover:cursor-pointer";
 
   return (
     <button {...props} className={classes}>

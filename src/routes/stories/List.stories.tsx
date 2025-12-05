@@ -1,13 +1,13 @@
 import type { Meta, StoryObj as Story } from "@storybook/react";
-import ChinguListPage from "../ChinguListPage";
-import { mockData } from "../mockData";
+import List from "../List.tsx";
+import { mockData } from "../../shared/components/mockData.ts";
 
 const meta = {
-  title: "Components/ChinguListPage",
-  component: ChinguListPage,
+  title: "Routes/List",
+  component: List,
   tags: ["autodocs"],
   args: {},
-} satisfies Meta<typeof ChinguListPage>;
+} satisfies Meta<typeof List>;
 
 export default meta;
 

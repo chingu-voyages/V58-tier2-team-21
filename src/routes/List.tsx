@@ -1,8 +1,8 @@
-import ChinguFilter from "./ChinguFilter";
-import ChinguList from "./ChinguList";
-import type { ChinguCardPropsType } from "./ChinguCard";
-import ChingueSearch from "./ChinguSearch";
-import { useChinguFiltering } from "../../hooks/useChinguFiltering";
+import ChinguFilter from "../shared/components/ChinguFilter";
+import ChinguList from "../shared/components/ChinguList";
+import type { ChinguCardPropsType } from "../shared/components/ChinguCard";
+import ChinguSearch from "../shared/components/ChinguSearch.tsx";
+import { useChinguFiltering } from "../hooks/useChinguFiltering.ts";
 import { useState } from "react";
 
 type ChinguListPageProps = {
@@ -29,8 +29,8 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
       <div className="relative">
         <div className="grid grid-cols-1 md:grid-cols-[16rem_1fr] gap-2 items-start w-full overflow-hidden">
           {/* Desktop/tablet */}
-          <div className="bg-primaryDark hidden md:block h-screen overflow-y-auto scrollbar scrollbar-track-primaryDark scrollbar-thumb-backgroundLighter rounded-lg ml-2 mt-5 p-2">
-            <ChingueSearch
+          <div className="bg-secondary hidden md:block h-screen overflow-y-auto scrollbar scrollbar-track-secondary scrollbar-thumb-black-100 rounded-lg ml-2 mt-5 p-2">
+            <ChinguSearch
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
@@ -51,11 +51,11 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
 
         {/* Mobile sliding panel opener */}
         <div
-          className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-backgroundLighter text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
+          className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-black-100 text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
           onClick={() => setIsFilterOpen((prev) => !prev)}
         >
           <span
-            className={`text-primaryLight font-bold text-lg transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
+            className={`text-secondary-light font-bold text-lg transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
           >
             ▶
           </span>
@@ -63,10 +63,10 @@ export default function ChinguListPage({ data }: ChinguListPageProps) {
 
         {/* Mobile sliding panel */}
         <div
-          className={`fixed top-0 left-0 h-full w-64 bg-primaryDark p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
+          className={`fixed top-0 left-0 h-full w-64 bg-secondary p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
         ${isFilterOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
-          <ChingueSearch
+          <ChinguSearch
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />

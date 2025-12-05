@@ -61,7 +61,7 @@ export default function ChinguFilter({
 }: ChinguFilterProps) {
   return (
     <>
-      <form className="bg-primaryDark py-2" action="">
+      <form className="bg-secondary py-2" action="">
         <div>
           <fieldset className="my-4 p-2">
             <legend className="text-lg">Year of joining</legend>
@@ -74,7 +74,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("yearOfJoiningMin", e.target.value)
               }
-              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
               type="number"
@@ -85,7 +85,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("yearOfJoiningMax", e.target.value)
               }
-              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>
         </div>
@@ -97,7 +97,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`gender-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -122,7 +122,7 @@ export default function ChinguFilter({
             <div>
               <label
                 htmlFor="country-desc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
               >
                 <input
                   type="radio"
@@ -138,7 +138,7 @@ export default function ChinguFilter({
             <div>
               <label
                 htmlFor="country-asc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
               >
                 <input
                   type="radio"
@@ -161,7 +161,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`roleType-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -187,7 +187,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`voyageRole-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -218,7 +218,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`soloTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -248,7 +248,7 @@ export default function ChinguFilter({
               <div key={option.value}>
                 <label
                   htmlFor={`voyageTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-secondaryLight hover:rounded-lg hover:cursor-pointer"
+                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -283,7 +283,7 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("voyageNumMin", e.target.value)
               }
-              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <input
               type="number"
@@ -294,13 +294,13 @@ export default function ChinguFilter({
               onChange={(e) =>
                 handleNumericChange("voyageNumMax", e.target.value)
               }
-              className="bg-primaryLight border border-backgroundLighter p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
           </fieldset>
         </div>
       </form>
 
-      <div className="bg-primaryDark buttons mt-4 flex justify-around gap-4">
+      <div className="bg-secondary buttons mt-4 flex justify-around gap-4">
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>

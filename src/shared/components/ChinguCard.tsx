@@ -16,7 +16,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
 
   return (
     <div className="card hover:scale-105 transition-transform duration-150 
-                  bg-primaryDark  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 
+                  bg-secondary  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 
                   max-w-xl items-center w-full">
       <img
         src={`https://flagcdn.com/80x60/${countryFlag}.png`}
@@ -33,18 +33,18 @@ export default function ChinguCard(props: ChinguCardPropsType) {
           <span className="font-semibold wrap-break-word whitespace-normal">
             {props.countryName}
           </span>
-          <span className="text-backgroundLighter">•</span>
+          <span className="text-black-100">•</span>
           <span>{props.gender.toLowerCase()}</span>
-          <span className="text-backgroundLighter">•</span>
+          <span className="text-black-100">•</span>
           <span>joined: {props.timestamp.slice(0, 4)}</span>
         </div>
 
         <div className="flex flex-wrap gap-2 mt-1">
-          <span className="bg-backgroundDarker text-textColor px-3 py-2 rounded-full text-sm">
+          <span className="bg-black-200 text-white-200 px-3 py-2 rounded-full text-sm">
             Solo tier:{" "}
             {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
           </span>
-          <span className="bg-secondaryLight text-backgroundDarker px-3 py-2 rounded-full text-sm">
+          <span className="bg-primary-light text-black-200 px-3 py-2 rounded-full text-sm">
             Voyage tier: {props.voyageTier.length > 0 ? props.voyageTier : "-"}
           </span>
           <span className="bg-gray-500 text-white px-3 py-2 rounded-full text-sm">
