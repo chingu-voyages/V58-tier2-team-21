@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-backgroundLighter: #34353A;
-  --color-backgroundDarker: #27272B;
-  --color-textColor: #F6F7EB;
-  --color-primaryLight: #84A4D2;
-  --color-primaryDark: #6279B8;
-  --color-secondaryLight: #94ECBE;
-  --color-secondaryDark: #16E08A;
+  --color-backgroundLighter: #34353a;
+  --color-backgroundDarker: #27272b;
+  --color-textColor: #f6f7eb;
+  --color-primaryLight: #84a4d2;
+  --color-primaryDark: #6279b8;
+  --color-secondaryLight: #94ecbe;
+  --color-secondaryDark: #16e08a;
+  --breakpoint-3xl: 1800px;
 }
 
 @plugin "tailwind-scrollbar";
