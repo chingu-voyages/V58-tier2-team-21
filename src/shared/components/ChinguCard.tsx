@@ -15,20 +15,24 @@ export default function ChinguCard(props: ChinguCardPropsType) {
   const countryFlag = countryCode === "uk" ? "gb" : countryCode;
 
   return (
-    <div className="card hover:scale-105 transition-transform duration-150 bg-secondary  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 max-w-xl items-center">
+    <div className="card hover:scale-105 transition-transform duration-150 
+                  bg-secondary  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 
+                  max-w-xl items-center w-full">
       <img
         src={`https://flagcdn.com/80x60/${countryFlag}.png`}
         alt="flag-avatar"
         className="p-2 mr-3"
       />
 
-      <div className="flex flex-col flex-1 gap-2">
+      <div className="flex flex-col gap-2">
         <div className="text-white text-lg font-medium">
           {props.roleType} {props.voyageRole}
         </div>
 
         <div className="flex flex-wrap flex-1 items-center gap-2 text-md">
-          <span className="font-semibold">{props.countryName}</span>
+          <span className="font-semibold wrap-break-word whitespace-normal">
+            {props.countryName}
+          </span>
           <span className="text-black-100">•</span>
           <span>{props.gender.toLowerCase()}</span>
           <span className="text-black-100">•</span>
@@ -44,7 +48,7 @@ export default function ChinguCard(props: ChinguCardPropsType) {
             Voyage tier: {props.voyageTier.length > 0 ? props.voyageTier : "-"}
           </span>
           <span className="bg-gray-500 text-white px-3 py-2 rounded-full text-sm">
-            Voyage: V{props.voyageNum.length > 0 ? props.voyageNum : "-"}
+            Voyage: {props.voyageNum.length > 0 ? props.voyageNum : "-"}
           </span>
         </div>
       </div>

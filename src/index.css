@@ -20,6 +20,7 @@
 	--color-secondary-light: #84A4D2;
 
 	--font-nunito: Nunito, Inter, sans-serif;
+  --breakpoint-3xl: 1800px;
 }
 
 @plugin "tailwind-scrollbar";
