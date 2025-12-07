@@ -12,7 +12,7 @@ type DrawerProps = {
 }
 
 export default function Drawer({children, open, side, setOpen}: DrawerProps) {
-	useEffect(() => {
+  useEffect(() => {
 		const collapseNav = () => setOpen(false)
 		window.addEventListener("resize", collapseNav)
 		return () => window.removeEventListener("resize", collapseNav);
