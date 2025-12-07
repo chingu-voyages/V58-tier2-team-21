@@ -18,6 +18,14 @@ export default function Drawer({children, open, side, setOpen}: DrawerProps) {
 		return () => window.removeEventListener("resize", collapseNav);
 	}, [])
 
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    if (open) document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open]);
+
 	const opposite: sideType = side === "right" ? "left" : "right"
 
 	const transitionClass = {
