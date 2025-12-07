@@ -1,15 +1,14 @@
 import ChinguFilter from "../shared/components/ChinguFilter";
 import ChinguList from "../shared/components/ChinguList";
-import type { ChinguCardPropsType } from "../shared/components/ChinguCard";
 import ChinguSearch from "../shared/components/ChinguSearch.tsx";
 import { useChinguFiltering } from "../hooks/useChinguFiltering.ts";
 import { useState } from "react";
+import type { ChinguListPageProps } from "../dataLoader.ts";
+import { useLoaderData } from "react-router";
 
-type ChinguListPageProps = {
-  data: ChinguCardPropsType[];
-};
+export default function ChinguListPage() {
+  const { data }: ChinguListPageProps = useLoaderData();
 
-export default function ChinguListPage({ data }: ChinguListPageProps) {
   const {
     filteredList,
     searchTerm,
