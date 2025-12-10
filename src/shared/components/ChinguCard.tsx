@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 export type ChinguCardPropsType = {
   gender: string;
   countryName: string;
@@ -8,6 +10,7 @@ export type ChinguCardPropsType = {
   voyageTier: string;
   voyageNum: string;
   timestamp: string;
+  centroidCoordinates: { lat: number; lon: number } | null;
 };
 
 export default function ChinguCard(props: ChinguCardPropsType) {
@@ -15,43 +18,55 @@ export default function ChinguCard(props: ChinguCardPropsType) {
   const countryFlag = countryCode === "uk" ? "gb" : countryCode;
 
   return (
-    <div className="card hover:scale-105 transition-transform duration-150 
-                  bg-secondary  rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4 
-                  max-w-xl items-center w-full">
-      <img
-        src={`https://flagcdn.com/80x60/${countryFlag}.png`}
-        alt="flag-avatar"
-        className="p-2 mr-3"
-      />
-
-      <div className="flex flex-col gap-2">
-        <div className="text-white text-lg font-medium">
+    <article
+      className={clsx(
+        "border-2 bg-secondary border-secondary-light text-white-200 text-sm hover:bg-secondary-light",
+        "p-4 flex flex-col gap-2 rounded-md",
+      )}
+    >
+      <header>
+        <h3 className="font-semibold text-lg">
           {props.roleType} {props.voyageRole}
-        </div>
-
-        <div className="flex flex-wrap flex-1 items-center gap-2 text-md">
-          <span className="font-semibold wrap-break-word whitespace-normal">
-            {props.countryName}
+        </h3>
+      </header>
+      <div className="flex flex-col grow justify-between gap-4">
+        <section className="flex items-center gap-2">
+          <span className="flex items-center gap-2">
+            <img
+              src={`https://flagcdn.com/80x60/${countryFlag}.png`}
+              alt="flag-avatar"
+              className="h-4 w-auto"
+            />
+            <p className="wrap-break-word whitespace-normal">
+              {props.countryName}
+            </p>
           </span>
           <span className="text-black-100">•</span>
           <span>{props.gender.toLowerCase()}</span>
           <span className="text-black-100">•</span>
           <span>joined: {props.timestamp.slice(0, 4)}</span>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mt-1">
-          <span className="bg-black-200 text-white-200 px-3 py-2 rounded-full text-sm">
-            Solo tier:{" "}
-            {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
-          </span>
-          <span className="bg-primary-light text-black-200 px-3 py-2 rounded-full text-sm">
-            Voyage tier: {props.voyageTier.length > 0 ? props.voyageTier : "-"}
-          </span>
-          <span className="bg-gray-500 text-white px-3 py-2 rounded-full text-sm">
-            Voyage: {props.voyageNum.length > 0 ? props.voyageNum : "-"}
-          </span>
-        </div>
+        </section>
+        <section className="flex items-center gap-2 flex-wrap">
+          <div className="flex flex-col gap-1 text-sm grow shrink">
+            <p>Solo project tier</p>
+            <span className="px-2 py-1 rounded-sm bg-black-200">
+              {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
+            </span>
+          </div>
+          <div className="flex flex-col gap-1 text-sm grow shrink">
+            <p>Voyage tier</p>
+            <span className="px-2 py-1 rounded-sm bg-primary-light text-black-100">
+              {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
+            </span>
+          </div>
+          <div className="flex flex-col gap-1 text-sm grow shrink">
+            <p>Voyage</p>
+            <span className="px-2 py-1 rounded-sm bg-white-100 text-black-100">
+              {props.soloProjectTier.length > 0 ? props.soloProjectTier : "-"}
+            </span>
+          </div>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }

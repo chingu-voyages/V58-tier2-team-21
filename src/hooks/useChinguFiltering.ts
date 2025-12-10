@@ -1,6 +1,12 @@
-import { useCallback, useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import type { ChinguCardPropsType } from "../shared/components/ChinguCard";
+import {
+  useState,
+  useCallback,
+  useEffect,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { useLoaderData } from "react-router";
+import type { ChinguCardPropsType } from "../shared/components/ChinguCard.tsx";
 
 export type ArrayFilterKey =
   | "gender"
@@ -44,11 +50,11 @@ export type filterHookType = {
       | "voyageNumMax",
     value: string,
   ) => void;
-  handleSubmit: () => void;
-  handleClear: () => void;
+  handleCountryOrderChange: (value: "country-asc" | "country-desc") => void;
+  search: () => void;
+  clearFilters: () => void;
   searchTerm: string;
   setSearchTerm: Dispatch<SetStateAction<string>>;
-  handleCountryOrderChange: (value: "country-asc" | "country-desc") => void;
 };
 
 function applySearchToList(list: ChinguCardPropsType[], searchTerm: string) {
@@ -214,12 +220,12 @@ export function useChinguFiltering() {
     [],
   );
 
-  const handleSubmit = useCallback(
+  const search = useCallback(
     () => applyFilters(filter),
     [applyFilters, filter],
   );
 
-  const handleClear = useCallback(() => {
+  const clearFilters = useCallback(() => {
     setFilter({
       gender: [],
       countryName: [],
@@ -246,7 +252,7 @@ export function useChinguFiltering() {
     handleChange,
     handleNumericChange,
     handleCountryOrderChange,
-    handleSubmit,
-    handleClear,
+    search,
+    clearFilters,
   };
 }
