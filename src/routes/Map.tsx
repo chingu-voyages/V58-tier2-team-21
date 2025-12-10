@@ -44,7 +44,7 @@ export default function Map() {
 
 	useEffect(() => {
 		// Set your Mapbox access token
-		mapboxgl.accessToken = 'pk.eyJ1IjoiYmFzdGllbndpbmFudCIsImEiOiJjbWh4bGpxN2EwMjgzMmxzZmtxend2bDBnIn0.5wNa5GLqPkFiaOfTa-pqfA'
+		mapboxgl.accessToken = 'ENTER TOKEN HERE'
 
 		mapRef.current = new mapboxgl.Map({
 			container: mapContainerRef.current!,
@@ -69,7 +69,7 @@ export default function Map() {
 
 		mapRef.current!.flyTo(
 			{center: [selectedCountry.coordinates.lon, selectedCountry.coordinates.lat],
-				zoom: 3,
+				zoom: 4,
 				duration: 1000}
 		)
 

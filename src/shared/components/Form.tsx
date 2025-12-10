@@ -14,11 +14,11 @@ export default function Form({ children, onSubmit }: FormProps) {
 	}
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className="flex flex-col h-full overflow-y-auto p-4 bg-white-200 rounded-lg"
-		>
-			{children}
-		</form>
-	)
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col h-full overflow-y-auto pt-8 p-4 bg-white-200 rounded-lg"
+    >
+      {children}
+    </form>
+  );
 }
