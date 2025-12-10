@@ -1,12 +1,8 @@
 import type { ChinguCardPropsType } from "./shared/components/ChinguCard.tsx";
 import rawData from './assets/data/chinguData.json'
 
-export type ChinguListPageProps = {
-  data: ChinguCardPropsType[];
-};
-
-export function loader(): ChinguListPageProps {
-  const data: ChinguCardPropsType[] = rawData.map((item) => ({
+export function loader(): ChinguCardPropsType[] {
+  return rawData.map((item) => ({
     timestamp: item.Timestamp,
     gender: item.Gender.trim().toLowerCase(),
     countryCode: item["Country Code"],
@@ -17,6 +13,4 @@ export function loader(): ChinguListPageProps {
     voyageTier: item["Voyage Tier"],
     voyageNum: item["Voyage (from Voyage Signups)"],
   }));
-
-  return { data }
 }

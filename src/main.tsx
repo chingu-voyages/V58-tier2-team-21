@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router"
-import Layout from "./components/Layout";
+import RootLayout from "./components/layouts/RootLayout";
+import FilterLayout from "./components/layouts/FilterLayout";
 import Index from "./routes/Index";
 import List from "./routes/List";
 import Map from "./routes/Map";
@@ -12,11 +13,17 @@ import { loader as rootLoader } from "./dataLoader";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <RootLayout />,
     children: [
       { index: true, element: <Index /> },
-      { path: "list", element: <List />, loader: rootLoader, },
-      { path: "map", element: <Map /> }
+      {
+        element: <FilterLayout />,
+        loader: rootLoader,
+        children: [
+          { id: "list", path: "list", element: <List /> },
+          { id: "map", path: "map", element: <Map /> },
+        ],
+      },
     ],
   },
 ]);
