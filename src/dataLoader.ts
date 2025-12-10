@@ -1,5 +1,5 @@
 import type { ChinguCardPropsType } from "./shared/components/ChinguCard.tsx";
-import chinguData from "./assets/data/chinguData.json";
+import chinguData from "./assets/data/demoData.json";
 import rawCountryData from './assets/data/alpha2_centroids.json';
 
 const countryData = rawCountryData as Record<string, { lat: number; lng: number }>;
