@@ -1,14 +1,11 @@
 import ChinguFilter from "../shared/components/ChinguFilter";
 import ChinguList from "../shared/components/ChinguList";
 import ChinguSearch from "../shared/components/ChinguSearch.tsx";
-import { useChinguFiltering } from "../hooks/useChinguFiltering.ts";
 import { useState } from "react";
-import type { ChinguListPageProps } from "../dataLoader.ts";
-import { useLoaderData } from "react-router";
+import { type filterHookType } from "../hooks/useChinguFiltering";
+import { useOutletContext } from "react-router";
 
 export default function ChinguListPage() {
-  const { data }: ChinguListPageProps = useLoaderData();
-
   const {
     filteredList,
     searchTerm,
@@ -19,7 +16,7 @@ export default function ChinguListPage() {
     handleCountryOrderChange,
     handleSubmit,
     handleClear,
-  } = useChinguFiltering(data);
+  }: filterHookType = useOutletContext();
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 

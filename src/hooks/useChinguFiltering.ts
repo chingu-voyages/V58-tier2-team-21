@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import type { ChinguCardPropsType } from "../shared/components/ChinguCard";
+import { useLoaderData } from "react-router";
 
 export type ArrayFilterKey =
   | "gender"
@@ -25,6 +26,29 @@ export type FilterStateType = {
   voyageTier: string[];
   voyageNum: string[];
   timestamp: string[];
+};
+
+export type filterHookType = {
+  filteredList: ChinguCardPropsType[];
+  filter: FilterStateType;
+  handleChange: (
+    category: ArrayFilterKey,
+    value: string,
+    checked: boolean,
+  ) => void;
+  handleNumericChange: (
+    category:
+      | "yearOfJoiningMin"
+      | "yearOfJoiningMax"
+      | "voyageNumMin"
+      | "voyageNumMax",
+    value: string,
+  ) => void;
+  handleSubmit: () => void;
+  handleClear: () => void;
+  searchTerm: string;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  handleCountryOrderChange: (value: "country-asc" | "country-desc") => void;
 };
 
 function applySearchToList(list: ChinguCardPropsType[], searchTerm: string) {
@@ -111,7 +135,9 @@ function applyFiltersToList(
   return result;
 }
 
-export function useChinguFiltering(data: ChinguCardPropsType[]) {
+export function useChinguFiltering() {
+  const data = useLoaderData();
+
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [appliedFilter, setAppliedFilter] = useState<FilterStateType | null>(
     null,
