@@ -28,7 +28,7 @@ export default function ChinguList(props: { data: ChinguCardPropsType[] }) {
 
       <ReactPaginate
         previousAriaLabel="<"
-        nextLabel=">"
+        nextAriaLabel=">"
         pageCount={pageCount}
         onPageChange={handlePageClick}
         containerClassName="flex gap-2 justify-center mt-6"
