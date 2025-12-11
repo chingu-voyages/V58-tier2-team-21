@@ -34,8 +34,8 @@ export default function ChinguList(props: { data: ChinguCardPropsType[] }) {
         containerClassName="flex gap-2 justify-center mt-6"
         pageClassName="px-3 py-1 border rounded bg-primary-light hover:bg-secondary hover:text-white hover:cursor-pointer"
         activeClassName="bg-secondary text-white"
-        previousClassName="px-3 py-1 border rounded bg-secondary text-white"
-        nextClassName="px-3 py-1 border rounded bg-secondary text-white"
+        previousClassName="px-3 py-1 border rounded bg-secondary text-white hover:cursor-pointer"
+        nextClassName="px-3 py-1 border rounded bg-secondary text-white hover:cursor-pointer"
         disabledClassName="opacity-50 cursor-default"
       />
     </>
