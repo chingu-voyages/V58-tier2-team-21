@@ -58,7 +58,7 @@ export default function ChinguMapPage() {
 
   useEffect(() => {
     // Set your Mapbox access token
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYmFzdGllbndpbmFudCIsImEiOiJjbWowbTk1cDEwNGJlM2RxeTF0ZG4zbzgzIn0.OElN0t3NNwE5v9XIkD0hGQ'
+    mapboxgl.accessToken = 'ENTER API KEY HERE'
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,

@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import mapboxgl from 'mapbox-gl'
+import MapPopup from "./MapPopup";
 
 export type CountryDataType = {
   code: string
@@ -35,16 +36,19 @@ const Marker = ({ map, country, selectedCountry, setSelectedCountry }: MarkerPro
   }, [])
 
   const element: ReactNode = (
-    <div
-      onClick={() => setSelectedCountry(country)}
-      className={'bg-contain bg-no-repeat cursor-pointer transition w-[37px] h-10'}
-      style={{
-        backgroundImage: (
-          isSelected
-            ? 'url("./sg-marker-selected.svg")'
-            : 'url("./sg-marker.svg")'),
-      }}>
-    </div>
+    <article className='relative'>
+      <div
+        onClick={() => setSelectedCountry(country)}
+        className={'bg-contain bg-no-repeat cursor-pointer transition w-[37px] h-10'}
+        style={{
+          backgroundImage: (
+            isSelected
+              ? 'url("./sg-marker-selected.svg")'
+              : 'url("./sg-marker.svg")'),
+        }}>
+      </div>
+      {isSelected && <MapPopup country={selectedCountry} /> }
+    </article>
   )
 
   return (
