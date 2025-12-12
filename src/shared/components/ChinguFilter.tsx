@@ -90,37 +90,66 @@ export default function ChinguFilter({
     },
   ];
 
+  const rangeFilters: {
+    name: {
+      min: "yearOfJoiningMin" | "voyageNumMin";
+      max: "yearOfJoiningMax" | "voyageNumMax";
+    };
+    label: string;
+    min: number;
+    max: number;
+  }[] = [
+    {
+      name: { min: "yearOfJoiningMin", max: "yearOfJoiningMax" },
+      label: "Year of Joining",
+      min: 2019,
+      max: 2025,
+    },
+    {
+      name: { min: "voyageNumMin", max: "voyageNumMax" },
+      label: "Voyage",
+      min: 32,
+      max: 59,
+    },
+  ];
+
   return (
     <>
       <form className="bg-secondary py-2" action="">
-        {/* Year inputs */}
-        <div>
-          <fieldset className="my-4 p-2">
-            <legend className="text-lg">Year of joining</legend>
-            <input
-              type="number"
-              name="min-joined"
-              id="min-joined"
-              placeholder="From year:"
-              value={filter.yearOfJoiningMin ?? ""}
-              onChange={(e) =>
-                handleNumericChange("yearOfJoiningMin", e.target.value)
-              }
-              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
-            />
-            <input
-              type="number"
-              name="max-joined"
-              id="max-joined"
-              placeholder="To year:"
-              value={filter.yearOfJoiningMax ?? ""}
-              onChange={(e) =>
-                handleNumericChange("yearOfJoiningMax", e.target.value)
-              }
-              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
-            />
+        {/* Range filters */}
+        {rangeFilters.map((f) => (
+          <fieldset key={f.label} className="my-4 p-2">
+            <legend className="text-lg mb-2">{f.label}</legend>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min={f.min}
+                  max={f.max}
+                  value={filter[f.name.min] ?? f.min}
+                  onChange={(e) =>
+                    handleNumericChange(f.name.min, e.target.value)
+                  }
+                  className="flex-1 w-full h-2 mb-2 bg-primary-light rounded-lg appearance-none accent-gray-500"
+                />
+                <span>{filter[f.name.min]}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min={f.min}
+                  max={f.max}
+                  value={filter[f.name.max] ?? f.min}
+                  onChange={(e) =>
+                    handleNumericChange(f.name.max, e.target.value)
+                  }
+                  className="flex-1 w-full h-2 bg-primary-light rounded-lg appearance-none accent-gray-500"
+                />
+                <span>{filter[f.name.max]}</span>
+              </div>
+            </div>
           </fieldset>
-        </div>
+        ))}
 
         {/* Multi-choice filters */}
         {multiFilters.map((f) => (
@@ -182,35 +211,6 @@ export default function ChinguFilter({
             </div>
           </fieldset>
         ))}
-
-        {/* Voyage inputs */}
-        <div>
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Voyage</legend>
-            <input
-              type="number"
-              name="min-voyage"
-              id="min-voyage"
-              placeholder="From Voyage:"
-              value={filter.voyageNumMin ?? ""}
-              onChange={(e) =>
-                handleNumericChange("voyageNumMin", e.target.value)
-              }
-              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
-            />
-            <input
-              type="number"
-              name="max-voyage"
-              id="max-voyage"
-              placeholder="To Voyage:"
-              value={filter.voyageNumMax ?? ""}
-              onChange={(e) =>
-                handleNumericChange("voyageNumMax", e.target.value)
-              }
-              className="bg-secondary-light border border-black-100 p-1 rounded-lg mb-2 mr-2  focus:outline-none focus:ring-2 focus:ring-gray-600"
-            />
-          </fieldset>
-        </div>
       </form>
 
       <div className="bg-secondary buttons mt-4 flex justify-around gap-4">
