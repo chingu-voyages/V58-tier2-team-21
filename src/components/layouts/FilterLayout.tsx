@@ -9,8 +9,6 @@ export default function FilterLayout() {
   const filtering: filterHookType = useChinguFiltering();
 
   return (
-    <Container>
-      <Outlet context={filtering} />
-    </Container>
+    <Outlet context={filtering} />
   )
 }
