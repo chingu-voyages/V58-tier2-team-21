@@ -67,9 +67,10 @@ function applySearchToList(list: ChinguCardPropsType[], searchTerm: string) {
   ];
 
   return list.filter((chingu) =>
-    searchableFields.some((field) =>
-      chingu[field].toLowerCase().includes(searchTerm.toLowerCase()),
-    ),
+    searchableFields.some((field) => {
+      if (typeof chingu[field] !== "string") return false
+      return chingu[field].toLowerCase().includes(searchTerm.toLowerCase())
+    }),
   );
 }
 
