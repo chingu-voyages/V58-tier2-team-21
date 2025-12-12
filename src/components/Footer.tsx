@@ -5,7 +5,7 @@ export default function Footer() {
   const date: string = new Date().toDateString();
 
   return (
-    <footer className="bg-black-200">
+    <footer className="bg-black-200 rounded-lg px-4">
       <Container>
         <div className="h-24 sm:h-12 text-white-200 flex flex-col justify-center items-center gap-4 sm:flex-row sm:justify-between sm:items-center text-xs">
           <section className="flex items-center gap-4">
