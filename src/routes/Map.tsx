@@ -1,9 +1,12 @@
 import ChinguFilter from "../shared/components/ChinguFilter";
-import ChinguList from "../shared/components/ChinguList";
 import ChinguSearch from "../shared/components/ChinguSearch.tsx";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { type filterHookType } from "../hooks/useChinguFiltering";
 import { useOutletContext } from "react-router";
+import mapboxgl from 'mapbox-gl'
+
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 
 export default function ChinguMapPage() {
   const {
@@ -19,6 +22,32 @@ export default function ChinguMapPage() {
   }: filterHookType = useOutletContext();
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const mapRef = useRef<mapboxgl.Map | null>(null)
+  const mapContainerRef = useRef<HTMLDivElement>(null)
+  const [mapLoaded, setMapLoaded] = useState(false)
+
+  useEffect(() => {
+    // Set your Mapbox access token
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYmFzdGllbndpbmFudCIsImEiOiJjbWowbTk1cDEwNGJlM2RxeTF0ZG4zbzgzIn0.OElN0t3NNwE5v9XIkD0hGQ'
+
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current!,
+      center: [-77.03915, 38.90025], // Washington DC
+      zoom: 12.5,
+      config: {
+        basemap: { theme: 'faded'}
+      }
+    })
+
+    mapRef.current.on('load', () => {
+      setMapLoaded(true)
+    })
+
+    return () => {
+      mapRef.current?.remove()
+    }
+  }, [])
 
   return (
     <div className="flex w-full">
@@ -39,9 +68,7 @@ export default function ChinguMapPage() {
           />
         </div>
 
-        <div className="w-full h-full bg-red-400">
-          this is a test
-        </div>
+        <div className="h-full w-full" ref={mapContainerRef} />
       </div>
 
       {/* Mobile sliding panel opener */}
