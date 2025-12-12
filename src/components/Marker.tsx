@@ -13,7 +13,7 @@ interface MarkerProps {
   country: CountryDataType
   map: mapboxgl.Map
   selectedCountry: CountryDataType | null
-  setSelectedCountry: () => void
+  setSelectedCountry: (country: CountryDataType) => void
 }
 
 const Marker = ({ map, country, selectedCountry, setSelectedCountry }: MarkerProps) => {

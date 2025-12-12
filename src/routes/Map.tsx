@@ -58,7 +58,7 @@ export default function ChinguMapPage() {
 
   useEffect(() => {
     // Set your Mapbox access token
-    mapboxgl.accessToken = 'ENTER KEY HERE'
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYmFzdGllbndpbmFudCIsImEiOiJjbWowbTk1cDEwNGJlM2RxeTF0ZG4zbzgzIn0.OElN0t3NNwE5v9XIkD0hGQ'
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,
@@ -77,6 +77,17 @@ export default function ChinguMapPage() {
       mapRef.current?.remove()
     }
   }, [])
+
+  useEffect(() => {
+    if (!selectedCountry ) return
+
+    mapRef.current!.flyTo(
+      {center: [selectedCountry.coordinates.lon, selectedCountry.coordinates.lat],
+        zoom: 4,
+        duration: 1000}
+    )
+
+  },[selectedCountry])
 
   return (
     <div className="flex w-full">
