@@ -1,4 +1,3 @@
-import Container from "../../shared/components/Container";
 import { Outlet } from "react-router";
 import {
   useChinguFiltering,
@@ -9,8 +8,6 @@ export default function FilterLayout() {
   const filtering: filterHookType = useChinguFiltering();
 
   return (
-    <Container>
-      <Outlet context={filtering} />
-    </Container>
+    <Outlet context={filtering} />
   )
 }
