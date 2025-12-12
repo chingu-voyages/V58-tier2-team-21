@@ -40,12 +40,12 @@ const voyageRoleOptions = [
   { value: "Scrum Master", label: "Scrum Master" },
   { value: "Product Owner", label: "Product Owner" },
 ];
-const soloProjectTier = [
+const soloProjectTierOptions = [
   { value: "Tier 1", label: "Tier 1" },
   { value: "Tier 2", label: "Tier 2" },
   { value: "Tier 3", label: "Tier 3" },
 ];
-const voyageTier = [
+const voyageTierOptions = [
   { value: "Tier 1", label: "Tier 1" },
   { value: "Tier 2", label: "Tier 2" },
   { value: "Tier 3", label: "Tier 3" },
@@ -59,9 +59,41 @@ export default function ChinguFilter({
   handleCountryOrderChange,
   filter,
 }: ChinguFilterProps) {
+  const multiFilters: {
+    name: ArrayFilterKey;
+    label: string;
+    options: { value: string; label: string }[];
+  }[] = [
+    { name: "gender", label: "Gender", options: genderOptions },
+    { name: "roleType", label: "Role Type", options: roleTypeOptions },
+    { name: "voyageRole", label: "Voyage Role", options: voyageRoleOptions },
+    {
+      name: "soloProjectTier",
+      label: "Solo Project Tier",
+      options: soloProjectTierOptions,
+    },
+    { name: "voyageTier", label: "Voyage Tier", options: voyageTierOptions },
+  ];
+
+  const radioFilters: {
+    name: "countryOrder";
+    label: string;
+    options: { value: "country-asc" | "country-desc"; label: string }[];
+  }[] = [
+    {
+      name: "countryOrder",
+      label: "Country",
+      options: [
+        { value: "country-desc", label: "Descending" },
+        { value: "country-asc", label: "Ascending" },
+      ],
+    },
+  ];
+
   return (
     <>
       <form className="bg-secondary py-2" action="">
+        {/* Year inputs */}
         <div>
           <fieldset className="my-4 p-2">
             <legend className="text-lg">Year of joining</legend>
@@ -90,187 +122,68 @@ export default function ChinguFilter({
           </fieldset>
         </div>
 
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Gender</legend>
-            {genderOptions.map((option) => (
-              <div key={option.value}>
-                <label
-                  htmlFor={`gender-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    id={`gender-${option.value}`}
-                    value={option.value}
-                    checked={filter.gender.includes(option.value)}
-                    onChange={(e) =>
-                      handleChange("gender", e.target.value, e.target.checked)
+        {/* Multi-choice filters */}
+        {multiFilters.map((f) => (
+          <fieldset key={f.name} className="mb-4 p-2">
+            <legend className="text-lg mb-2">{f.label}</legend>
+            <div className="flex flex-wrap gap-2">
+              {f.options.map((option) => {
+                const isSelected = filter[f.name].includes(option.value);
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() =>
+                      handleChange(
+                        f.name as ArrayFilterKey,
+                        option.value,
+                        !isSelected,
+                      )
                     }
-                    className="hover:cursor-pointer"
-                  />
-                  {option.label}
-                </label>
-              </div>
-            ))}
-          </fieldset>
-        </div>
-
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Country</legend>
-            <div>
-              <label
-                htmlFor="country-desc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  id="country-desc"
-                  name="countryOrder"
-                  value="country-desc"
-                  onChange={() => handleCountryOrderChange("country-desc")}
-                  className="hover:cursor-pointer"
-                />
-                Descending order
-              </label>
-            </div>
-            <div>
-              <label
-                htmlFor="country-asc"
-                className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  id="country-asc"
-                  name="countryOrder"
-                  value="country-asc"
-                  onChange={() => handleCountryOrderChange("country-asc")}
-                  className="hover:cursor-pointer"
-                />
-                Ascending order
-              </label>
+                    className={`px-4 py-1 rounded-full text-sm font-medium m-1 transition-colors
+                  ${isSelected ? "bg-primary-light" : "bg-secondary-light"}
+                  hover:bg-secondary-light  hover:cursor-pointer
+                `}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
             </div>
           </fieldset>
-        </div>
+        ))}
 
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Role Type</legend>
-            {roleTypeOptions.map((option) => (
-              <div key={option.value}>
-                <label
-                  htmlFor={`roleType-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    id={`roleType-${option.value}`}
-                    value={option.value}
-                    checked={filter.roleType.includes(option.value)}
-                    onChange={(e) =>
-                      handleChange("roleType", e.target.value, e.target.checked)
-                    }
-                    className="hover:cursor-pointer"
-                  />
-                  {option.label}
-                </label>
-              </div>
-            ))}
-          </fieldset>
-        </div>
-
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Voyage Role</legend>
-            {voyageRoleOptions.map((option) => (
-              <div key={option.value}>
-                <label
-                  htmlFor={`voyageRole-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    id={`voyageRole-${option.value}`}
-                    value={option.value}
-                    checked={filter.voyageRole.includes(option.value)}
-                    onChange={(e) =>
-                      handleChange(
-                        "voyageRole",
-                        e.target.value,
-                        e.target.checked,
+        {/* Radio filter */}
+        {radioFilters.map((f) => (
+          <fieldset key={f.name} className="mb-4 p-2">
+            <legend className="text-lg mb-2">{f.label}</legend>
+            <div className="flex flex-wrap gap-2">
+              {f.options.map((option) => {
+                const isSelected = filter[f.name] === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() =>
+                      handleCountryOrderChange(
+                        option.value as "country-asc" | "country-desc",
                       )
                     }
-                    className="hover:cursor-pointer"
-                  />
-
-                  {option.label}
-                </label>
-              </div>
-            ))}
-          </fieldset>
-        </div>
-
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Solo Project Tier</legend>
-            {soloProjectTier.map((option) => (
-              <div key={option.value}>
-                <label
-                  htmlFor={`soloTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    id={`soloTier-${option.value}`}
-                    value={option.value}
-                    checked={filter.soloProjectTier.includes(option.value)}
-                    onChange={(e) =>
-                      handleChange(
-                        "soloProjectTier",
-                        e.target.value,
-                        e.target.checked,
-                      )
+                    className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
+                      isSelected ? "bg-primary-light" : "bg-secondary-light"
                     }
-                    className="hover:cursor-pointer"
-                  />
-                  {option.label}
-                </label>
-              </div>
-            ))}
+                      hover:bg-secondary-light  hover:cursor-pointer
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
           </fieldset>
-        </div>
+        ))}
 
-        <div className="flex flex-col">
-          <fieldset className="mb-4 p-2">
-            <legend className="text-lg">Voyage Tier</legend>
-            {voyageTier.map((option) => (
-              <div key={option.value}>
-                <label
-                  htmlFor={`voyageTier-${option.value}`}
-                  className="flex items-center gap-2 mb-1 px-2 py-1 hover:bg-primary-light hover:rounded-lg hover:cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    id={`voyageTier-${option.value}`}
-                    value={option.value}
-                    checked={filter.voyageTier.includes(option.value)}
-                    onChange={(e) =>
-                      handleChange(
-                        "voyageTier",
-                        e.target.value,
-                        e.target.checked,
-                      )
-                    }
-                    className="hover:cursor-pointer"
-                  />
-                  {option.label}
-                </label>
-              </div>
-            ))}
-          </fieldset>
-        </div>
-
+        {/* Voyage inputs */}
         <div>
           <fieldset className="mb-4 p-2">
             <legend className="text-lg">Voyage</legend>
