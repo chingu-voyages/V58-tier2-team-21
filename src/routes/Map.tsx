@@ -25,7 +25,7 @@ export default function ChinguMapPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 
-  const countryData = useMemo(
+  const countryData: CountryDataType[] = useMemo(
     () => Object.values(
       filteredList.reduce((acc, item) => {
         const { countryCode, countryName, centroidCoordinates } = item;
