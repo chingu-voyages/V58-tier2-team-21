@@ -7,7 +7,7 @@ export default function RootLayout() {
     <div className="min-h-screen flex flex-col bg-black-100 font-nunito">
       <div className="w-full max-w-7xl mx-auto px-4 flex flex-col grow">
         <Header />
-        <main className="flex grow h-full">
+        <main className="flex grow h-full bg-blue-600">
           <Outlet />
         </main>
         <Footer />

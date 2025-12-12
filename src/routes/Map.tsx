@@ -21,7 +21,7 @@ export default function ChinguMapPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="flex w-full">
       <div className="grid grid-cols-1 md:grid-cols-[16rem_1fr] gap-2 items-start w-full overflow-hidden">
         {/* Desktop/tablet */}
         <div className="bg-secondary hidden md:block h-screen overflow-y-auto scrollbar scrollbar-track-secondary scrollbar-thumb-black-100 rounded-lg ml-2 mt-5 p-2">
@@ -39,7 +39,7 @@ export default function ChinguMapPage() {
           />
         </div>
 
-        <div className="flex-1 md:py-5 w-full h-full bg-red-400">
+        <div className="w-full h-full bg-red-400">
           this is a test
         </div>
       </div>
