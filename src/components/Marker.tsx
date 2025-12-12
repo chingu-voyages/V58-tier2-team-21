@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { type ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import mapboxgl from 'mapbox-gl'
 
@@ -34,16 +34,23 @@ const Marker = ({ map, country, selectedCountry, setSelectedCountry }: MarkerPro
     }
   }, [])
 
+  const element: ReactNode = (
+    <div
+      onClick={() => setSelectedCountry(country)}
+      className={'bg-contain bg-no-repeat cursor-pointer transition w-[37px] h-10'}
+      style={{
+        backgroundImage: (
+          isSelected
+            ? 'url("./sg-marker-selected.svg")'
+            : 'url("./sg-marker.svg")'),
+      }}>
+    </div>
+  )
+
   return (
     <>
       {createPortal(
-        <div
-          onClick={() => setSelectedCountry(country)}
-          className={'bg-contain bg-no-repeat cursor-pointer transition w-[37px] h-10'}
-          style={{
-            backgroundImage: 'url("./16-pin-3.svg")',
-          }}>
-        </div>,
+        element,
         contentRef.current
       )}
     </>
