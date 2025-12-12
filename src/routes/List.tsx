@@ -59,7 +59,7 @@ export default function ChinguListPage() {
 
         {/* Mobile sliding panel */}
         <div
-          className={`fixed top-0 left-0 h-full w-64 bg-secondary p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
+          className={`fixed top-0 left-0 h-full w-64 bg-secondary border rounded-lg p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
         ${isFilterOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
           <ChinguSearch
