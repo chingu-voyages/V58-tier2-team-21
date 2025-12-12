@@ -8,6 +8,7 @@ export type ChinguCardPropsType = {
   voyageTier: string;
   voyageNum: string;
   timestamp: string;
+  centroidCoordinates: { lat: number; lon: number } | null;
 };
 
 export default function ChinguCard(props: ChinguCardPropsType) {

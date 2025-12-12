@@ -4,8 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import { type filterHookType } from "../hooks/useChinguFiltering";
 import { useOutletContext } from "react-router";
 import mapboxgl from 'mapbox-gl'
-
 import 'mapbox-gl/dist/mapbox-gl.css'
+import Marker, { type CountryDataType } from "../components/Marker.tsx"
+import { useMemo } from "react";
 
 
 export default function ChinguMapPage() {
@@ -23,9 +24,37 @@ export default function ChinguMapPage() {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const mapRef = useRef<mapboxgl.Map | null>(null)
-  const mapContainerRef = useRef<HTMLDivElement>(null)
-  const [mapLoaded, setMapLoaded] = useState(false)
+
+  const countryData = useMemo(
+    () => Object.values(
+      filteredList.reduce((acc, item) => {
+        const { countryCode, countryName, centroidCoordinates } = item;
+
+        if (!centroidCoordinates?.lat || !centroidCoordinates?.lon) {
+          return acc;
+        }
+
+        if (!acc[countryCode]) {
+          acc[countryCode] = {
+            code: countryCode,
+            name: countryName,
+            coordinates: { ...centroidCoordinates }, // keep the first valid coordinates
+            count: 0
+          };
+        }
+
+        acc[countryCode].count += 1;
+        return acc;
+      }, {})
+    ), [filteredList]
+  )
+
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  const [selectedCountry, setSelectedCountry] = useState<CountryDataType | null>(null)
 
   useEffect(() => {
     // Set your Mapbox access token
@@ -34,7 +63,7 @@ export default function ChinguMapPage() {
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,
       center: [-77.03915, 38.90025], // Washington DC
-      zoom: 12.5,
+      zoom: 2,
       config: {
         basemap: { theme: 'faded'}
       }
@@ -68,7 +97,18 @@ export default function ChinguMapPage() {
           />
         </div>
 
-        <div className="h-full w-full" ref={mapContainerRef} />
+        <section className="h-full">
+          <div className="h-full w-full" ref={mapContainerRef} />
+          {mapLoaded && countryData.map((country: CountryDataType) => (
+            <Marker
+              key={country.code}
+              country={country}
+              map={mapRef.current!}
+              setSelectedCountry={setSelectedCountry}
+              selectedCountry={selectedCountry}
+            />
+          ))}
+        </section>
       </div>
 
       {/* Mobile sliding panel opener */}
