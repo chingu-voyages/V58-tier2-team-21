@@ -212,8 +212,23 @@ export default function ChinguFilter({
         ))}
       </form>
 
-      <div className="md:bg-secondary bg-primary-light buttons mt-4 flex justify-around gap-4">
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+      <div className="md:bg-secondary bg-primary-light mt-4 flex justify-around gap-4">
+        {/* Desktop submit */}
+        <Button
+          variant="primary"
+          type="submit"
+          className="hidden md:inline-flex"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+        {/* Mobile submit */}
+        <Button
+          variant="filter"
+          type="submit"
+          className="md:hidden"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
         <Button variant="secondary" onClick={handleClear}>

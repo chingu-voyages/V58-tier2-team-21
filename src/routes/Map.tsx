@@ -7,6 +7,7 @@ import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Marker, { type CountryDataType } from "../components/Marker.tsx"
 import { useMemo } from "react";
+import useIsMobile from "../hooks/useIsMobile.ts";
 
 type AggregatedChinguData = {
   [key: string]: CountryDataType;
@@ -57,6 +58,8 @@ export default function ChinguMapPage() {
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
+  const isMobile = useIsMobile();
+
   const [mapLoaded, setMapLoaded] = useState(false);
 
   const [selectedCountry, setSelectedCountry] = useState<CountryDataType | null>(null)
@@ -93,6 +96,14 @@ export default function ChinguMapPage() {
 
   },[selectedCountry])
 
+    function handleFilterSubmit() {
+    handleSubmit();
+
+    if (isMobile) {
+      setIsFilterOpen(false);
+    }
+  }
+
   return (
     <div className="flex w-full">
       <div className="grid grid-cols-1 md:grid-cols-[16rem_1fr] gap-2 items-start w-full overflow-hidden">
@@ -127,43 +138,40 @@ export default function ChinguMapPage() {
       </div>
 
       {/* Mobile sliding panel opener */}
-      <div
-        className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-black-100 text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
-        onClick={() => setIsFilterOpen((prev) => !prev)}
-      >
-        <span
-          className={`text-secondary-light font-bold text-lg transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
-        >
-          ▶
-        </span>
-      </div>
-
-      {/* Mobile sliding panel */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-secondary border rounded-lg p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
-      ${isFilterOpen ? "translate-x-0" : "-translate-x-full"}`}
-      >
-        <ChinguSearch
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        />
-        <ChinguFilter
-          handleSubmit={handleSubmit}
-          handleClear={handleClear}
-          handleChange={handleChange}
-          handleNumericChange={handleNumericChange}
-          handleCountryOrderChange={handleCountryOrderChange}
-          filter={filter}
-        />
-      </div>
-
-      {/* Mobile overlay */}
-      {isFilterOpen && (
-        <div
-          className="mobile-overlay"
-          onClick={() => setIsFilterOpen(false)}
-        />
-      )}
-    </div>
+              <div
+                className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-secondary-light text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
+                onClick={() => setIsFilterOpen((prev) => !prev)}
+              >
+                <span
+                  className={`text-primary-light font-bold text-2xl transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
+                >
+                  ▶
+                </span>
+              </div>
+      
+              {/* Mobile sliding panel */}
+              <div
+                className={`fixed top-0 left-0 h-full w-64 bg-primary-light border rounded-lg p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
+              ${isFilterOpen ? "translate-x-0" : "-translate-x-full"}`}
+              >
+                <ChinguSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <ChinguFilter
+                  handleSubmit={handleFilterSubmit}
+                  handleClear={handleClear}
+                  handleChange={handleChange}
+                  handleNumericChange={handleNumericChange}
+                  handleCountryOrderChange={handleCountryOrderChange}
+                  filter={filter}
+                />
+              </div>
+      
+              {/* Mobile overlay */}
+              {isFilterOpen && (
+                <div
+                  className="mobile-overlay"
+                  onClick={() => setIsFilterOpen(false)}
+                />
+              )}
+            </div>
   );
 }
