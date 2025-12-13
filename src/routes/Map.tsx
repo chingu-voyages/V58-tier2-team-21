@@ -62,8 +62,7 @@ export default function ChinguMapPage() {
   const [selectedCountry, setSelectedCountry] = useState<CountryDataType | null>(null)
 
   useEffect(() => {
-    // Set your Mapbox access token
-    mapboxgl.accessToken = 'ENTER API KEY HERE'
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,

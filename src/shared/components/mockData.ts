@@ -11,6 +11,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "58",
     timestamp: "2023-09-12",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -22,6 +23,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "58",
     timestamp: "2022-05-03",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "non-binary",
@@ -33,6 +35,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "57",
     timestamp: "2021-11-22",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -44,6 +47,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 3",
     voyageNum: "56",
     timestamp: "2020-07-19",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -55,6 +59,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "59",
     timestamp: "2024-01-29",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -66,6 +71,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "55",
     timestamp: "2019-04-10",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -77,6 +83,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 3",
     voyageNum: "60",
     timestamp: "2024-07-21",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "non-binary",
@@ -88,6 +95,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "58",
     timestamp: "2023-03-18",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -99,6 +107,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "57",
     timestamp: "2022-09-30",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -110,6 +119,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "54",
     timestamp: "2021-01-14",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -121,6 +131,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "59",
     timestamp: "2024-02-11",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -132,6 +143,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "56",
     timestamp: "2018-08-07",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -143,6 +155,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 3",
     voyageNum: "58",
     timestamp: "2023-05-13",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "non-binary",
@@ -154,6 +167,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "57",
     timestamp: "2021-11-02",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -165,6 +179,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "55",
     timestamp: "2019-12-19",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -176,6 +191,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "60",
     timestamp: "2024-03-20",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "male",
@@ -187,6 +203,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 3",
     voyageNum: "58",
     timestamp: "2023-06-28",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -198,6 +215,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "57",
     timestamp: "2021-10-05",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "non-binary",
@@ -209,6 +227,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 1",
     voyageNum: "56",
     timestamp: "2020-03-17",
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
   },
   {
     gender: "female",
@@ -220,6 +239,7 @@ export const mockData: ChinguCardPropsType[] = [
     voyageTier: "Tier 2",
     voyageNum: "59",
     timestamp: "2024-02-14",
-  }
+    centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
+  },
 ];
 

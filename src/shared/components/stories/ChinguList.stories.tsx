@@ -17,6 +17,7 @@ const meta = {
         voyageTier: "Tier 2",
         voyageNum: "V58",
         timestamp: "2025-10-18 08:56",
+        centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
       },
       {
         gender: "FEMALE",
@@ -28,6 +29,7 @@ const meta = {
         voyageTier: "Tier 1",
         voyageNum: "V59",
         timestamp: "2025-09-18 11:30",
+        centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
       },
       {
         gender: "MALE",
@@ -39,6 +41,7 @@ const meta = {
         voyageTier: "Tier 3",
         voyageNum: "V60",
         timestamp: "2025-08-10 14:45",
+        centroidCoordinates: { lat: -77.03915, lon: 38.90025 },
       },
     ],
   },
