@@ -4,6 +4,7 @@ import ChinguSearch from "../shared/components/ChinguSearch.tsx";
 import { useState } from "react";
 import { type filterHookType } from "../hooks/useChinguFiltering";
 import { useOutletContext } from "react-router";
+import useIsMobile from "../hooks/useIsMobile.ts";
 
 export default function ChinguListPage() {
   const {
@@ -19,6 +20,15 @@ export default function ChinguListPage() {
   }: filterHookType = useOutletContext();
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  function handleFilterSubmit() {
+    handleSubmit();
+
+    if (isMobile) {
+      setIsFilterOpen(false);
+    }
+  }
 
   return (
     <>
@@ -47,11 +57,11 @@ export default function ChinguListPage() {
 
         {/* Mobile sliding panel opener */}
         <div
-          className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-black-100 text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
+          className="md:hidden fixed top-1/2 left-0 -translate-y-1/2 bg-secondary-light text-white px-1 py-4 rounded-r-md shadow cursor-pointer z-50 flex items-center justify-center transform transition-transform duration-300"
           onClick={() => setIsFilterOpen((prev) => !prev)}
         >
           <span
-            className={`text-secondary-light font-bold text-lg transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
+            className={`text-primary-light font-bold text-2xl transform transition-transform duration 300 ${isFilterOpen ? "rotate-180" : "rotate-0"}`}
           >
             ▶
           </span>
@@ -59,15 +69,12 @@ export default function ChinguListPage() {
 
         {/* Mobile sliding panel */}
         <div
-          className={`fixed top-0 left-0 h-full w-64 bg-secondary border rounded-lg p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
+          className={`fixed top-0 left-0 h-full w-64 bg-primary-light border rounded-lg p-4 overflow-y-auto z-40 transform transition-transform duration-300 md:hidden
         ${isFilterOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
-          <ChinguSearch
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
+          <ChinguSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <ChinguFilter
-            handleSubmit={handleSubmit}
+            handleSubmit={handleFilterSubmit}
             handleClear={handleClear}
             handleChange={handleChange}
             handleNumericChange={handleNumericChange}
