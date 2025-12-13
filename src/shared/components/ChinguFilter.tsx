@@ -115,7 +115,7 @@ export default function ChinguFilter({
 
   return (
     <>
-      <form className="bg-secondary py-2" action="">
+      <form className="md:bg-secondary bg-primary-light py-2" action="">
         {/* Range filters */}
         {rangeFilters.map((f) => (
           <fieldset key={f.label} className="my-4 p-2">
@@ -130,7 +130,7 @@ export default function ChinguFilter({
                   onChange={(e) =>
                     handleNumericChange(f.name.min, e.target.value)
                   }
-                  className="flex-1 w-full h-2 mb-2 bg-primary-light rounded-lg appearance-none accent-gray-500"
+                  className="flex-1 w-full h-2 mb-2 md:bg-primary-light bg-secondary rounded-lg appearance-none accent-gray-500"
                 />
                 <span>{filter[f.name.min]}</span>
               </div>
@@ -143,7 +143,7 @@ export default function ChinguFilter({
                   onChange={(e) =>
                     handleNumericChange(f.name.max, e.target.value)
                   }
-                  className="flex-1 w-full h-2 bg-primary-light rounded-lg appearance-none accent-gray-500"
+                  className="flex-1 w-full h-2 md:bg-primary-light bg-secondary rounded-lg appearance-none accent-gray-500"
                 />
                 <span>{filter[f.name.max]}</span>
               </div>
@@ -170,8 +170,8 @@ export default function ChinguFilter({
                       )
                     }
                     className={`px-4 py-1 rounded-full text-sm font-medium m-1 transition-colors
-                  ${isSelected ? "bg-primary-light" : "bg-secondary-light"}
-                  hover:bg-secondary-light  hover:cursor-pointer
+                  ${isSelected ? "bg-primary" : "bg-secondary-light hover:bg-primary"}
+                    hover:cursor-pointer
                 `}
                   >
                     {option.label}
@@ -198,10 +198,9 @@ export default function ChinguFilter({
                         option.value as "country-asc" | "country-desc",
                       )
                     }
-                    className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
-                      isSelected ? "bg-primary-light" : "bg-secondary-light"
-                    }
-                      hover:bg-secondary-light  hover:cursor-pointer
+                    className={`px-4 py-1 rounded-full text-sm font-medium transition-colors 
+                      ${isSelected ? "bg-primary" : "bg-secondary-light hover:bg-primary"}
+                    hover:cursor-pointer
                     }`}
                   >
                     {option.label}
@@ -213,7 +212,7 @@ export default function ChinguFilter({
         ))}
       </form>
 
-      <div className="bg-secondary buttons mt-4 flex justify-around gap-4">
+      <div className="md:bg-secondary bg-primary-light buttons mt-4 flex justify-around gap-4">
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
