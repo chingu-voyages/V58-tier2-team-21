@@ -1,77 +1,150 @@
-# React + TypeScript + Vite
+# Chingu Member Demographics Map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hi, Chingus! 🗺️  
 
-Currently, two official plugins are available:
+This project is a web application that allows users to explore demographic information about Chingu members. You can view members on a **map** or in a **paginated list**, and filter them based on attributes such as **role type, tier, country, and gender**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app is **user-friendly, responsive**, and provides clear error handling and feedback for invalid inputs.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Table of Contents
+- [Overview](#overview)  
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Usage](#usage)  
+- [Error Handling](#error-handling)  
+- [Team](#team)  
+- [Demo](#demo) 
+- [Setup Instructions](#setup-instructions)   
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Overview
+The Chingu Member Demographics Map allows users to:
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- Explore where Chingu members live across the globe.  
+- View detailed attributes of each member, including **role, tier, country, gender, and year of joining**.  
+- Filter members using a **shared search component** for both Map and List screens.  
+- Navigate between **Map** and **List** screens easily.  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This project was built collaboratively following **Agile methodology**, emphasizing both functionality and creative UI/UX design.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
+- **List Screen**:  
+  - Paginated list of Chingu members.  
+  - Displays attributes including:  
+    - Gender  
+    - Country code or name  
+    - Year joined (from Timestamp)  
+    - Role type  
+    - Role  
+    - Solo Project Tier  
+    - Voyage Tier  
+    - Voyage 
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-- Emmanuel Oduntan: [GitHub](https://github.com/oduntane) / [LinkedIn](https://linkedin.com/in/oduntane)
-- Bastien Winant: [GitHub](https://github.com/BastienWinant)
-- Delanshia Hamilton: [GitHub](https://github.com/LanceHam)
-- Lilla Tóth: [GitHub](https://github.com/Lilla-ctrl) | [LinkedIn](https://www.linkedin.com/in/lillatoth216/)
+- **Map Screen**:  
+  - Displays members’ locations using **MapBox**.  
+  - Pins show the number of Chingus in each country.  
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- **Shared Search Component**:  
+  - Filter members by any combination of the following:  
+    - Gender  
+    - Country code or name  
+    - Year joined  
+    - Role type  
+    - Role  
+    - Solo Project Tier  
+    - Voyage Tier  
+    - Voyage  
+  - Submit and Clear buttons update or reset results.  
+
+- **Pagination**: For list results, using **React Paginate**.  
+
+- **Error Handling**:  
+  - Red warning if data fails to load.  
+  - Yellow notification if no results match filters.  
+  - Fallback messages for unexpected rendering errors.  
+
+- **Responsive Design**: Works well on mobile and desktop.  
+
+- **Footer**: Contains a link to the GitHub repo and team list.  
+
+---
+
+## Tech Stack
+- **React** + **TypeScript**  
+- **Tailwind CSS** for styling
+- **Storybook** for UI development
+- **React Paginate** for pagination  
+- **MapBox** for the Map screen  
+
+---
+
+## Usage
+
+- Navigate between **Home**, **Map**, and **List** screens using the header.  
+- Use the **shared search component** to filter members by any combination of:
+  - Gender
+  - Country code or name
+  - Year joined
+  - Role type
+  - Role
+  - Solo Project Tier
+  - Voyage Tier
+  - Voyage
+- Click **Submit** to apply filters.  
+- Click **Clear** to reset all filter fields.  
+- Use pagination controls on the List screen to navigate through results.  
+- On the Map screen, click a **pin** to see the number of members in that country.
+
+---
+
+## Error Handling
+
+- **Data failed to load** → displays a red warning message.  
+- **No matches found** → displays a yellow notification message when filters return no results.  
+- **Unexpected rendering errors** → fallback message prevents the app from crashing.  
+
+All error messages are **polished, visually distinct, and provide actionable guidance** to users.
+
+---
+
+## Team
+
+- Developer: Bastien Winant  
+- Developer: Lilla Tóth
+- Primary Scrum Master: Stephanie H
+- Shadow Scrum Master: chartGod
+- Product Owner: Amanda
+
+---
+
+## Demo
+
+- Live demo: [Coming soon](#)
+
+---
+
+## Setup Instructions
+
+1. Clone the repository:  
+   ```bash
+   git clone <your-repo-url>
+
+2. **Navigate to the project folder**  
+```bash
+cd chingu-member-map
+
+3. **Install dependencies**  
+```bash
+npm install
+
+4. **Start the development server**  
+```bash
+npm start
+
+5. **Open in your browser**  
+Open [http://localhost:3000](http://localhost:3000) to view the app.
