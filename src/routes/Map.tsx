@@ -8,6 +8,9 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Marker, { type CountryDataType } from "../components/Marker.tsx"
 import { useMemo } from "react";
 
+type AggregatedChinguData = {
+  [key: string]: CountryDataType;
+};
 
 export default function ChinguMapPage() {
   const {
@@ -25,29 +28,31 @@ export default function ChinguMapPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 
-  const countryData = useMemo(
-    () => Object.values(
-      filteredList.reduce((acc, item) => {
-        const { countryCode, countryName, centroidCoordinates } = item;
+  const countryData: CountryDataType[] = useMemo(
+    () =>
+      Object.values(
+        filteredList.reduce<AggregatedChinguData>((acc, item) => {
+          const { countryCode, countryName, centroidCoordinates } = item;
 
-        if (!centroidCoordinates?.lat || !centroidCoordinates?.lon) {
+          if (!centroidCoordinates?.lat || !centroidCoordinates?.lon) {
+            return acc;
+          }
+
+          if (!acc[countryCode]) {
+            acc[countryCode] = {
+              code: countryCode,
+              name: countryName,
+              coordinates: { ...centroidCoordinates }, // keep the first valid coordinates
+              count: 0,
+            };
+          }
+
+          acc[countryCode].count += 1;
           return acc;
-        }
-
-        if (!acc[countryCode]) {
-          acc[countryCode] = {
-            code: countryCode,
-            name: countryName,
-            coordinates: { ...centroidCoordinates }, // keep the first valid coordinates
-            count: 0
-          };
-        }
-
-        acc[countryCode].count += 1;
-        return acc;
-      }, {})
-    ), [filteredList]
-  )
+        }, {}),
+      ),
+    [filteredList],
+  );
 
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
