@@ -31,14 +31,15 @@ export default function Footer() {
               Scrum Masters:
             </p>
             <p>
-              Stephanie H <span className="opacity-40">•</span> chartGod
+              Stephanie Henry <span className="opacity-40">•</span> Delanshia
+              Hamilton
             </p>
           </section>
           <section>
             <p className="text-[10px] uppercase tracking-wide text-white-400">
               Product Owner:
             </p>
-            <p>Amanda</p>
+            <p>Amanda Acolatse</p>
           </section>
           <section className="flex items-center gap-2">
             <p>Voyage 58</p>
