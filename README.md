@@ -114,10 +114,10 @@ All error messages are **polished, visually distinct, and provide actionable gui
 
 ## Team
 
-- Developer: Bastien Winant  
-- Developer: Lilla Tóth
+- Developer: Bastien Winant - [GitHub](https://github.com/BastienWinant)
+- Developer: Lilla Tóth - [GitHub](https://github.com/Lilla-ctrl) | [LinkedIn](https://www.linkedin.com/in/lillatoth216/)
 - Primary Scrum Master: Stephanie H
-- Shadow Scrum Master: chartGod
+- Shadow Scrum Master: - Delanshia Hamilton: [GitHub](https://github.com/LanceHam)
 - Product Owner: Amanda
 
 ---
