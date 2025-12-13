@@ -128,7 +128,7 @@ All error messages are **polished, visually distinct, and provide actionable gui
 
 ## Demo
 
-- Live demo: [Coming soon](#)
+- [Live demo](https://v58-tier2-team21.web.app/)
 
 ---
 
@@ -143,17 +143,26 @@ All error messages are **polished, visually distinct, and provide actionable gui
 
 2. **Navigate to the project folder**
 
-````bash
-cd chingu-member-map
+    ```bash
+    cd chingu-member-map
+    ```
 
 3. **Install dependencies**
-```bash
-npm install
+    ```bash
+    npm install
+    ```
 
-4. **Start the development server**
-```bash
-npm start
+4. **Set up the MapBox API**
+   - get a public API token from [MapBox](https://www.mapbox.com/) 
+   - (if required) create the `.env` file in the root directory
+   - define the environment variable in the `.env` file: `VITE_MAPBOX_TOKEN=pk.xxxxx`
 
-5. **Open in your browser**
-Open [http://localhost:3000](http://localhost:3000) to view the app.
-````
+
+5. **Start the development server**
+    ```bash
+    npm start
+    ```
+
+6. **Open in your browser**
+
+    Open [http://localhost:3000](http://localhost:3000) to view the app.
