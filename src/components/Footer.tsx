@@ -18,11 +18,33 @@ export default function Footer() {
             </a>
             <p className="italic">{date}</p>
           </section>
+          <section>
+            <p className="text-[10px] uppercase tracking-wide text-white-400">
+              Developers:
+            </p>
+            <p>
+              Bastien Winant <span className="opacity-40">•</span> Lilla Tóth
+            </p>
+          </section>
+          <section>
+            <p className="text-[10px] uppercase tracking-wide text-white-400">
+              Scrum Masters:
+            </p>
+            <p>
+              Stephanie H <span className="opacity-40">•</span> chartGod
+            </p>
+          </section>
+          <section>
+            <p className="text-[10px] uppercase tracking-wide text-white-400">
+              Product Owner:
+            </p>
+            <p>Amanda</p>
+          </section>
           <section className="flex items-center gap-2">
             <p>Voyage 58</p>
-            <span>•</span>
+            <span className="opacity-40">•</span>
             <p>Tier 2</p>
-            <span>•</span>
+            <span className="opacity-40">•</span>
             <p>Team 21</p>
           </section>
         </div>
